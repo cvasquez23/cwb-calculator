@@ -16,6 +16,10 @@ Fire Value Calculator for WDS Civil War Battles
 
 ### Known Bugs and Issues
 
+### Issues to Reasearch
+
+- How to fetch information from a database via JS
+
 ## Authors
 
 ## Changelog

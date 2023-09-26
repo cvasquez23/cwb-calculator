@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/cvasquez23/cwb-calculator/issues"
   },
-  "homepage": "https://github.com/cvasquez23/cwb-calculator#readme"
+  "homepage": "https://github.com/cvasquez23/cwb-calculator#readme",
+  "devDependencies": {
+    "electron": "^26.2.2"
+  }
 }

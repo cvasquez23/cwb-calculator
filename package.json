@@ -1,0 +1,20 @@
+{
+  "name": "cwb-calculator",
+  "version": "0.1.0",
+  "description": "Fire Combat Calculator for WDS Civil War Battles",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cvasquez23/cwb-calculator.git"
+  },
+  "author": "Chris Vasquez & Wallace Welder",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cvasquez23/cwb-calculator/issues"
+  },
+  "homepage": "https://github.com/cvasquez23/cwb-calculator#readme"
+}

@@ -10,9 +10,11 @@ Fire Value Calculator for WDS Civil War Battles
 
 ## Built With
 
+- [Electron](https://www.npmjs.com/package/electron)
+
 ## Future Development
 
-### Features to be Added
+### Planned Functionality
 
 ### Known Bugs and Issues
 

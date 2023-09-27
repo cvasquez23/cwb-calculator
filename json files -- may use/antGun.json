@@ -1,0 +1,62 @@
+﻿[
+    {
+        "Repeating": "6",
+        "Breechload": "5",
+        "Carbine": "5",
+        "Smoothbore Musket": "4",
+        "Pistol": "1",
+        "Rifle Musket": "4",
+        "Shotgun": "3",
+        "Mixed Arms": "3",
+        "Multiple Arms": "10",
+        "Spencer Carbine": "7"
+    },
+    {
+        "Repeating": "4",
+        "Breechload": "3",
+        "Carbine": "3",
+        "Smoothbore Musket": "1",
+        "Pistol": "0",
+        "Rifle Musket": "3",
+        "Shotgun": "0",
+        "Mixed Arms": "1.5",
+        "Multiple Arms": "0",
+        "Spencer Carbine": "4"
+    },
+    {
+        "Repeating": "2",
+        "Breechload": "1",
+        "Carbine": "1",
+        "Smoothbore Musket": "0",
+        "Pistol": "0",
+        "Rifle Musket": "2",
+        "Shotgun": "0",
+        "Mixed Arms": ".5",
+        "Multiple Arms": "0",
+        "Spencer Carbine": "1"
+    },
+    {
+        "Repeating": "1",
+        "Breechload": ".5",
+        "Carbine": "0",
+        "Smoothbore Musket": "0",
+        "Pistol": "0",
+        "Rifle Musket": "1",
+        "Shotgun": "0",
+        "Mixed Arms": "0",
+        "Multiple Arms": "0",
+        "Spencer Carbine": "0"
+    },
+    {
+        "Repeating": "0",
+        "Breechload": "0",
+        "Carbine": "0",
+        "Smoothbore Musket": "0",
+        "Pistol": "0",
+        "Rifle Musket": "0",
+        "Shotgun": "0",
+        "Mixed Arms": "0",
+        "Multiple Arms": "0",
+        "Spencer Carbine": "0"
+    }
+]

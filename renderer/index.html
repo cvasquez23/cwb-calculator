@@ -18,22 +18,158 @@
         <option value="cornith">Cornith</option>
       </select>
     </h2>
-    <div>
+    <!-- Start Target Hex Information -->
+    <section id="target-hex-info">
+      <h2>Target Hex Information</h2>
+      <!-- Start Hexside Modifiers -->
+      <div id="hexside-mod">
+        <h3>Hexside Modifiers</h3>
+        <!-- Breastworks -30% -->
+        <input type="checkbox" id="breastwork" name="breastwork" value="Breastwork" />
+        <label for="Breastwork"> Breastwork</label>
+
+        <!-- Creek -20% -->
+        <input type="checkbox" id="creek" name="creek" value="Creek" />
+        <label for="Creek"> Creek</label>
+
+        <!-- Cut 50% -->
+        <input type="checkbox" id="cut" name="cut" value="Cut" />
+        <label for="Cut"> Cut</label>
+
+        <!-- Embank -70% -->
+        <input type="checkbox" id="embank" name="embank" value="Embank" />
+        <label for="Embank"> Embank</label>
+
+        <!-- Fence -20% -->
+        <input type="checkbox" id="fence" name="fence" value="Fence" />
+        <label for="Fence"> Fence</label>
+
+        <!-- Stone -40% -->
+        <input type="checkbox" id="stone" name="stone" value="Stone" />
+        <label for="Stone"> Stone</label>
+
+        <!-- Stream -10% -->
+        <input type="checkbox" id="stream" name="stream" value="Stream" />
+        <label for="Stream"> Stream</label>
+
+        <p>HexSide Modifier Total: <output id="hexsideModifier"></output></p>
+      </div>
+      <!-- End Hexside Modifiers -->
+      <!-- Start Hex Modifiers -->
+      <div id="hex-mod">
+        <h3>Hex Modifiers</h3>
+        <!-- Abatis 20% -->
+        <input type="checkbox" id="abatis" name="abatis" value="Abatis" />
+        <label for="Abatis"> Abatis</label>
+
+        <!-- Field -10% -->
+        <input type="checkbox" id="field" name="field" value="Field" />
+        <label for="Field"> Field</label>
+
+        <!-- Forest -40% -->
+        <input type="checkbox" id="forest" name="forest" value="Forest" />
+        <label for="Forest"> Forest</label>
+
+        <!-- Orchard -10% -->
+        <input type="checkbox" id="orchard" name="orchard" value="Orchard" />
+        <label for="Orchard"> Orchard</label>
+
+        <!-- Rough -30% -->
+        <input type="checkbox" id="rough" name="rough" value="Rough" />
+        <label for="Rough"> Rough</label>
+
+        <!-- Town -30% -->
+        <input type="checkbox" id="town" name="town" value="Town" />
+        <label for="Town"> Town</label>
+
+        <!-- Trench -60% -->
+        <input type="checkbox" id="trench" name="trench" value="Trench" />
+        <label for="Trench"> Trench</label>
+
+        <p>Hex Modifier Total: <output id="hexModifier"></output></p>
+      </div>
+      <!-- End Hex Modifiers -->
+      <!-- Start Additional Modifiers -->
+      <div id="add-mods">
+        <h3>Additional Modifiers</h3>
+
+        <div id="elevation-mod">
+          <h4>Elevation Modifier</h4>
+          <!-- Even Elevation 0% -->
+          <input type="radio" id="elevationSame" name="elevation" value="elevationSame" />
+          <label for="elevationSame">Equal Elevation</label>
+
+          <!-- Elevation1 -20% -->
+          <input type="radio" id="elevationOne" name="elevation" value="elevationOne" />
+          <label for="elevationOne">Firing Unit One Level Lower</label>
+
+          <!-- Elevation2 -40% -->
+          <input type="radio" id="elevationTwo" name="elevation" value="elevationTwo" />
+          <label for="elevationTwo">Firing Unit Two Levels Lower</label>
+
+          <p>Elevation Modifier: <output id="elevationModifier"></output></p>
+        </div>
+        <div id="other-mods">
+          <h4>Other Modifiers</h4>
+
+          <!-- In Column 40% -->
+          <input type="checkbox" id="infantryColumn" name="infantryColumn" value="infantryColumn" />
+          <label for="infantryColumn"> Infantry in Column</label>
+
+          <!-- Limbered 40% -->
+          <input type="checkbox" id="limberedArt" name="limberedArt" value="limberedArt" />
+          <label for="limberedArt"> Artillery Limbered</label>
+
+          <!-- Mounted 40% -->
+          <input type="checkbox" id="mounted" name="mounted" value="Mounted" />
+          <label for="Mounted"> Mounted Cavalry</label>
+
+          <!-- Enfiladed 40% -->
+          <input type="checkbox" id="enfiladed" name="enfiladed" value="Enfiladed" />
+          <label for="Enfiladed"> Enfiladed</label>
+
+          <p>Other Modifiers: <output id="otherModifier"></output></p>
+        </div>
+        <p>Total Additional Modifiers: <output id="totalAddModifier"></output></p>
+      </div>
+      <!-- End Additional Modifiers -->
+      <!-- Start Density Modifier -->
+      <div id="density-mod">
+        <h4>Density Fire Value Multiplyer</h4>
+        <p>Estimated Force Strength <input id="targetSize" type="number" placeholder="Estimated Hex Strength" min="1" /></p>
+        <p><small>If Unknown -- Leave Unchanged</small></p>
+        <p>Density Fire Value Multiplyer: <output id="densityModifier"></output></p>
+      </div>
+      <!-- End Density Modifier -->
+      <!-- Target Hex Total Modifiers -->
+      <div id="taget-total-mod">
+        <h4>Target Hex Total Modifiers</h4>
+        <p>Target Hex Total Modifers: <output id="targetTotalMod"></output></p>
+      </div>
+      <!-- End Target Hex Total Modifiers -->
+    </section>
+    <!-- End Target Hex Information -->
+
+    <section id="inf-cav-info">
+      <h2>Infantry/Dismounted Cavalry Calculator</h2>
       <div>
-        <h2>Infantry/Dismounted Cavalry Calculator</h2>
-        <div>
-          <!-- Start Unit One Calculator -->
-          <h3>Unit 1</h3>
-          <!-- Start Firing Characteristics -->
+        <!-- Start Unit One Calculator -->
+        <h3>Unit 1</h3>
+        <!-- Start Firing Characteristics -->
+        <div id="fireChar">
+          <h3>Firing Characteristics</h3>
+
           <div>
-            <h3>Firing Characteristics</h3>
+            <p>No. of Men <input id="firingStrength" type="number" placeholder="placeholder" min="1" /></p>
+          </div>
 
-            <p>No. of Men <input id="unit1MenFiring" type="number" placeholder="placeholder" /></p>
-
-            <p>Range <input id="unit1Range" type="number" min="1" max="5" placeholder="Range in Hexes" /></p>
+          <div>
+            <div>
+              <p>Range <input id="range" type="number" min="1" max="11" placeholder="Range in Hexes" /></p>
+            </div>
 
             <!-- Start Weapon Selection -->
-            <div>
+            <div id="weapon">
               <p>Weapon</p>
               <!-- Breechload -->
               <input type="radio" id="breechload" name="weapon" value="breechload" />
@@ -44,64 +180,70 @@
               <label for="carbine">Carbine</label>
 
               <!-- Mixed Arms -->
-              <input type="radio" id="mixedArms" name="weapon" value="mixedArms" />
-              <label for="mixedArms">Mixed Arms</label>
+              <input type="radio" id="mixedArms" name="weapon" value="mixed arms" />
+              <label for="mixed arms">Mixed Arms</label>
+
               <!-- Multiple Arms -->
-              <input type="radio" id="multipleArms" name="weapon" value="multipleArms" />
-              <label for="multipleArms">Multiple Arms</label>
-              <!-- Musket -->
-              <input type="radio" id="musket" name="weapon" value="musket" />
-              <label for="musket">Musket</label>
+              <input type="radio" id="multipleArms" name="weapon" value="multiple arms" />
+              <label for="multiple arms">Multiple Arms</label>
+
               <!-- Pistol -->
               <input type="radio" id="pistol" name="weapon" value="pistol" />
               <label for="pistol">Pistol</label>
+
               <!-- Repeating -->
               <input type="radio" id="repeating" name="weapon" value="repeating" />
               <label for="repeating">Repeating</label>
-              <!-- Rifle -->
-              <input type="radio" id="rifle" name="weapon" value="rifle" />
+
+              <!-- Rifle Musket -->
+              <input type="radio" id="rifleMusket" name="weapon" value="rifle musket" />
               <label for="rifle">Rifle</label>
+
+              <!-- SB Musket -->
+              <input type="radio" id="sbMusket" name="weapon" value="sb musket" />
+              <label for="sb musket">Musket</label>
+
               <!-- Shotgun -->
               <input type="radio" id="shotgun" name="weapon" value="shotgun" />
               <label for="shotgun">Shotgun</label>
+
               <!-- Spencer Carbine -->
-              <input type="radio" id="spencerCarbine" name="weapon" value="spencerCarbine" />
+              <input type="radio" id="spencerCarbine" name="weapon" value="spencer carbine" />
               <label for="spencerCarbine">Spencer Carbine</label>
             </div>
             <!-- End Weapon Selection -->
-
-            <p>Weapon Efficiency: <output>Eff Here</output></p>
+            <p>Weapon Efficiency: <output id="baseEfficiency"></output></p>
           </div>
-          <!-- End Firing Characteristics -->
+        </div>
+        <!-- End Firing Characteristics -->
 
-          <!-- Start Fire Modifiers -->
-          <div>
+        <!-- Start Fire Modifiers -->
+        <div>
+          <div id="fire-mods">
             <h3>Fire Modifiers</h3>
-            <!-- Building Breastwork / Trench-->
+
+            <!-- Building -30% -->
             <input type="checkbox" id="building" name="building" value="Building" />
             <label for="building"> Building Breastwork / Trenches</label>
 
-            <!-- Dismounted -->
+            <!-- Dismounted -75% -->
             <input type="checkbox" id="dismounted" name="dismounted" value="Dismounted" />
             <label for="dismounted"> Dismounted</label>
 
-            <!-- Disrupted -->
+            <!-- Disrupted -50% -->
             <input type="checkbox" id="disrupted" name="disrupted" value="Disrupted" />
             <label for="Disrupted"> Disrupted</label>
 
-            <!-- Fire After Movement -->
+            <!-- Moved -50% -->
             <input type="checkbox" id="movedFire" name="movedFire" value="Moved" />
             <label for="movedFire"> Fire After Movement</label>
 
-            <!-- Density Fire Value Multiplyer -->
-            <p>Density Fire Value Multiplyer</p>
-            <p>Estimated Force Strength <input id="targetSize" type="number" placeholder="Whole Intergers Only" /></p>
-            <p><small>If Unknown -- Leave Unchanged</small></p>
-            <p>Density Fire Value Multiplyer <output id="densityModifier"></output></p>
+            <p>Total Fire Modifiers: <output id="infFireModifiers"></output></p>
           </div>
           <!-- End Fire Modifiers -->
+
           <!-- Start Fatigue/Quality Modifiers -->
-          <div>
+          <div id="fatQualMods">
             <h3>Fatigue/Quality Modifers</h3>
             <p>Unit Quality</p>
 
@@ -124,93 +266,7 @@
             <label for="fatigueHigh">Fatigue 600-Max</label>
           </div>
           <!-- End Fatigue/Quality Modifiers -->
-          <!-- Start Hexside Modifiers -->
-          <div>
-            <h3>Hexside Modifiers</h3>
-            <!-- Breastworks -->
-            <input type="checkbox" id="breastwork" name="breastwork" value="Breastwork" />
-            <label for="Breastwork"> Breastwork</label>
 
-            <!-- Creek -->
-            <input type="checkbox" id="creek" name="creek" value="Creek" />
-            <label for="Creek"> Creek</label>
-
-            <!-- Cut -->
-            <input type="checkbox" id="cut" name="cut" value="Cut" />
-            <label for="Cut"> Cut</label>
-
-            <!-- Embank -->
-            <input type="checkbox" id="embank" name="embank" value="Embank" />
-            <label for="Embank"> Embank</label>
-
-            <!-- Fence -->
-            <input type="checkbox" id="fence" name="fence" value="Fence" />
-            <label for="Fence"> Fence</label>
-            <!-- Stone -->
-            <input type="checkbox" id="stone" name="stone" value="Stone" />
-            <label for="Stone"> Stone</label>
-            <!-- Stream -->
-            <input type="checkbox" id="stream" name="stream" value="Stream" />
-            <label for="Stream"> Stream</label>
-          </div>
-          <!-- End Hexside Modifiers -->
-          <!-- Start Hex Modifiers -->
-          <div>
-            <h3>Hex Modifiers</h3>
-            <!-- Abatis -->
-            <input type="checkbox" id="abatis" name="abatis" value="Abatis" />
-            <label for="Abatis"> Abatis</label>
-
-            <!-- Field -->
-            <input type="checkbox" id="field" name="field" value="Field" />
-            <label for="Field"> Field</label>
-
-            <!-- Forest -->
-            <input type="checkbox" id="forest" name="forest" value="Forest" />
-            <label for="Forest"> Forest</label>
-            <!-- Orchard -->
-            <input type="checkbox" id="orchard" name="orchard" value="Orchard" />
-            <label for="Orchard"> Orchard</label>
-            <!-- Rough -->
-            <input type="checkbox" id="rough" name="rough" value="Rough" />
-            <label for="Rough"> Rough</label>
-            <!-- Town -->
-            <input type="checkbox" id="town" name="town" value="Town" />
-            <label for="Town"> Town</label>
-            <!-- Trench -->
-            <input type="checkbox" id="trench" name="trench" value="Trench" />
-            <label for="Trench"> Trench</label>
-          </div>
-          <!-- End Hex Modifiers -->
-          <!-- Start Additional Modifiers -->
-          <div>
-            <h3>Additional Modifiers</h3>
-
-            <h4>Elevation Modifiers</h4>
-            <input type="radio" id="elevationSame" name="elevation" value="elevationSame" />
-            <label for="elevationSame">Equal Elevation</label>
-
-            <input type="radio" id="elevationOne" name="elevation" value="elevationOne" />
-            <label for="elevationOne">Firing Unit One Level Lower</label>
-
-            <input type="radio" id="elevationTwo" name="elevation" value="elevationTwo" />
-            <label for="elevationTwo">Firing Unit Two Levels Lower</label>
-
-            <br />
-            <h4>Other Modifiers</h4>
-            <input type="checkbox" id="infantryColumn" name="infantryColumn" value="infantryColumn" />
-            <label for="infantryColumn"> Infantry in Column</label>
-
-            <input type="checkbox" id="limberedArt" name="limberedArt" value="limberedArt" />
-            <label for="limberedArt"> Artillery Limbered</label>
-
-            <input type="checkbox" id="mounted" name="mounted" value="Mounted" />
-            <label for="Mounted"> Mounted Cavalry</label>
-
-            <input type="checkbox" id="enfiladed" name="enfiladed" value="Enfiladed" />
-            <label for="Enfiladed"> Enfiladed</label>
-          </div>
-          <!-- End Additional Modifiers -->
           <!-- Start Calculated Fire Values -->
           <div>
             <p>Calculated Fire Values</p>
@@ -234,9 +290,9 @@
         </div>
         <!-- End Unit One Calculator -->
       </div>
-      <div>
-        <h3>Artillery Calculator</h3>
-      </div>
-    </div>
+    </section>
+    <section id="art-info">
+      <h3>Artillery Calculator</h3>
+    </section>
   </body>
 </html>

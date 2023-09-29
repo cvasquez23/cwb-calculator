@@ -55,6 +55,7 @@
         <p>HexSide Modifier Total: <output id="hexsideModifier"></output></p>
       </div>
       <!-- End Hexside Modifiers -->
+
       <!-- Start Hex Modifiers -->
       <div id="hex-mod">
         <h3>Hex Modifiers</h3>
@@ -89,6 +90,7 @@
         <p>Hex Modifier Total: <output id="hexModifier"></output></p>
       </div>
       <!-- End Hex Modifiers -->
+
       <!-- Start Additional Modifiers -->
       <div id="add-mods">
         <h3>Additional Modifiers</h3>
@@ -133,6 +135,7 @@
         <p>Total Additional Modifiers: <output id="totalAddModifier"></output></p>
       </div>
       <!-- End Additional Modifiers -->
+
       <!-- Start Density Modifier -->
       <div id="density-mod">
         <h4>Density Fire Value Multiplyer</h4>
@@ -247,23 +250,35 @@
             <h3>Fatigue/Quality Modifers</h3>
             <p>Unit Quality</p>
 
+            <!-- AB Quality 10% -->
             <input type="radio" id="qualityAB" name="quality" value="qualityAB" />
             <label for="qualityAB">A/B Quality</label>
 
+            <!-- C/D Quality 0% -->
             <input type="radio" id="qualityC" name="quality" value="qualityC" />
-            <label for="qualityC">C Quality</label>
+            <label for="qualityCD">C/D Quality</label>
 
+            <!-- E/F Quality -10% -->
             <input type="radio" id="qualityEF" name="quality" value="qualityEF" />
             <label for="qualityEF">E/F Quality</label>
+
             <p>Unit Fatigue</p>
+
+            <!-- Low Fatigue 0% -->
             <input type="radio" id="fatigueLow" name="fatigue" value="fatigueLow" />
             <label for="fatigueLow">Fatigue 0-299</label>
 
+            <!-- Med Fatigue -10% -->
             <input type="radio" id="fatigueMed" name="fatigue" value="fatigueMed" />
             <label for="fatigueMed">Fatigue 300-599</label>
 
+            <!-- High Fatigue -20% -->
             <input type="radio" id="fatigueHigh" name="fatigue" value="fatigueHigh" />
-            <label for="fatigueHigh">Fatigue 600-Max</label>
+            <label for="fatigueHigh">Fatigue 600-799</label>
+
+            <!-- Max Fatigue -40% -->
+            <input type="radio" id="fatigueMax" name="fatigue" value="fatigueMax" />
+            <label for="fatigueMax">Fatigue Max</label>
           </div>
           <!-- End Fatigue/Quality Modifiers -->
 

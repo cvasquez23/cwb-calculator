@@ -22,7 +22,7 @@
     <section id="target-hex-info">
       <h2>Target Hex Information</h2>
       <!-- Start Hexside Modifiers -->
-      <div id="hexside-mod">
+      <div id="hexsideMod">
         <h3>Hexside Modifiers</h3>
         <!-- Breastworks -30% -->
         <input type="checkbox" id="breastwork" name="breastwork" value="Breastwork" />
@@ -53,6 +53,7 @@
         <label for="Stream"> Stream</label>
 
         <p>HexSide Modifier Total: <output id="hexsideModifier"></output></p>
+        <p><code>calculateHexsideMod</code></p>
       </div>
       <!-- End Hexside Modifiers -->
 
@@ -88,14 +89,15 @@
         <label for="Trench"> Trench</label>
 
         <p>Hex Modifier Total: <output id="hexModifier"></output></p>
+        <p><code>calculateHexMod</code></p>
       </div>
       <!-- End Hex Modifiers -->
 
       <!-- Start Additional Modifiers -->
-      <div id="add-mods">
+      <div id="additionalMods">
         <h3>Additional Modifiers</h3>
 
-        <div id="elevation-mod">
+        <div id="elevationMod">
           <h4>Elevation Modifier</h4>
           <!-- Even Elevation 0% -->
           <input type="radio" id="elevationSame" name="elevation" value="elevationSame" />
@@ -110,8 +112,9 @@
           <label for="elevationTwo">Firing Unit Two Levels Lower</label>
 
           <p>Elevation Modifier: <output id="elevationModifier"></output></p>
+          <p><code>calculateElevationMod</code></p>
         </div>
-        <div id="other-mods">
+        <div id="otherMods">
           <h4>Other Modifiers</h4>
 
           <!-- In Column 40% -->
@@ -131,8 +134,10 @@
           <label for="Enfiladed"> Enfiladed</label>
 
           <p>Other Modifiers: <output id="otherModifier"></output></p>
+          <p><code>calculateOtherMods</code></p>
         </div>
         <p>Total Additional Modifiers: <output id="totalAddModifier"></output></p>
+        <p><code>calculateAdditionalMods</code></p>
       </div>
       <!-- End Additional Modifiers -->
 
@@ -142,12 +147,14 @@
         <p>Estimated Force Strength <input id="targetSize" type="number" placeholder="Estimated Hex Strength" min="1" /></p>
         <p><small>If Unknown -- Leave Unchanged</small></p>
         <p>Density Fire Value Multiplyer: <output id="densityModifier"></output></p>
+        <p><code>calculateDensityMod</code></p>
       </div>
       <!-- End Density Modifier -->
       <!-- Target Hex Total Modifiers -->
       <div id="taget-total-mod">
         <h4>Target Hex Total Modifiers</h4>
         <p>Target Hex Total Modifers: <output id="targetTotalMod"></output></p>
+        <p><code>calculateHexsideMod</code></p>
       </div>
       <!-- End Target Hex Total Modifiers -->
     </section>
@@ -163,7 +170,7 @@
           <h3>Firing Characteristics</h3>
 
           <div>
-            <p>No. of Men <input id="firingStrength" type="number" placeholder="placeholder" min="1" /></p>
+            <p>No. of Men <input id="firingStrength" type="number" placeholder="Firing Strength" min="1" /></p>
           </div>
 
           <div>
@@ -216,32 +223,31 @@
             </div>
             <!-- End Weapon Selection -->
             <p>Weapon Efficiency: <output id="baseEfficiency"></output></p>
+            <p><code>calculateBaseEfficiency</code></p>
           </div>
         </div>
         <!-- End Firing Characteristics -->
 
         <!-- Start Fire Modifiers -->
         <div>
-          <div id="fire-mods">
+          <div id="fireMods">
             <h3>Fire Modifiers</h3>
 
             <!-- Building -30% -->
-            <input type="checkbox" id="building" name="building" value="Building" />
+            <input type="checkbox" id="building" name="fireMods" value="Building" />
             <label for="building"> Building Breastwork / Trenches</label>
 
             <!-- Dismounted -75% -->
-            <input type="checkbox" id="dismounted" name="dismounted" value="Dismounted" />
+            <input type="checkbox" id="dismounted" name="fireMods" value="Dismounted" />
             <label for="dismounted"> Dismounted</label>
 
             <!-- Disrupted -50% -->
-            <input type="checkbox" id="disrupted" name="disrupted" value="Disrupted" />
+            <input type="checkbox" id="disrupted" name="fireMods" value="Disrupted" />
             <label for="Disrupted"> Disrupted</label>
 
             <!-- Moved -50% -->
-            <input type="checkbox" id="movedFire" name="movedFire" value="Moved" />
+            <input type="checkbox" id="movedFire" name="fireMods" value="Moved" />
             <label for="movedFire"> Fire After Movement</label>
-
-            <p>Total Fire Modifiers: <output id="infFireModifiers"></output></p>
           </div>
           <!-- End Fire Modifiers -->
 
@@ -251,43 +257,57 @@
             <p>Unit Quality</p>
 
             <!-- AB Quality 10% -->
-            <input type="radio" id="qualityAB" name="quality" value="qualityAB" />
-            <label for="qualityAB">A/B Quality</label>
+            <div id="unitQuality">
+              <input type="radio" id="qualityAB" name="quality" value="qualityAB" />
+              <label for="qualityAB">A/B Quality</label>
 
-            <!-- C/D Quality 0% -->
-            <input type="radio" id="qualityC" name="quality" value="qualityC" />
-            <label for="qualityCD">C/D Quality</label>
+              <!-- C/D Quality 0% -->
+              <input type="radio" id="qualityC" name="quality" value="qualityC" />
+              <label for="qualityCD">C/D Quality</label>
 
-            <!-- E/F Quality -10% -->
-            <input type="radio" id="qualityEF" name="quality" value="qualityEF" />
-            <label for="qualityEF">E/F Quality</label>
+              <!-- E/F Quality -10% -->
+              <input type="radio" id="qualityEF" name="quality" value="qualityEF" />
+              <label for="qualityEF">E/F Quality</label>
+            </div>
 
-            <p>Unit Fatigue</p>
+            <div id="unitFatigue">
+              <p>Unit Fatigue</p>
 
-            <!-- Low Fatigue 0% -->
-            <input type="radio" id="fatigueLow" name="fatigue" value="fatigueLow" />
-            <label for="fatigueLow">Fatigue 0-299</label>
+              <!-- Low Fatigue 0% -->
+              <input type="radio" id="fatigueLow" name="fatigue" value="fatigueLow" />
+              <label for="fatigueLow">Fatigue 0-299</label>
 
-            <!-- Med Fatigue -10% -->
-            <input type="radio" id="fatigueMed" name="fatigue" value="fatigueMed" />
-            <label for="fatigueMed">Fatigue 300-599</label>
+              <!-- Med Fatigue -10% -->
+              <input type="radio" id="fatigueMed" name="fatigue" value="fatigueMed" />
+              <label for="fatigueMed">Fatigue 300-599</label>
 
-            <!-- High Fatigue -20% -->
-            <input type="radio" id="fatigueHigh" name="fatigue" value="fatigueHigh" />
-            <label for="fatigueHigh">Fatigue 600-799</label>
+              <!-- High Fatigue -20% -->
+              <input type="radio" id="fatigueHigh" name="fatigue" value="fatigueHigh" />
+              <label for="fatigueHigh">Fatigue 600-799</label>
 
-            <!-- Max Fatigue -40% -->
-            <input type="radio" id="fatigueMax" name="fatigue" value="fatigueMax" />
-            <label for="fatigueMax">Fatigue Max</label>
+              <!-- Max Fatigue -40% -->
+              <input type="radio" id="fatigueMax" name="fatigue" value="fatigueMax" />
+              <label for="fatigueMax">Fatigue Max</label>
+            </div>
+
+            <p>Fire Unit Fire Modifiers: <output id="infFireMod"></output></p>
+            <p><code>calculateInfUnitFireMod</code></p>
           </div>
           <!-- End Fatigue/Quality Modifiers -->
 
           <!-- Start Calculated Fire Values -->
           <div>
-            <p>Calculated Fire Values</p>
+            <h3>Calculated Fire Values</h3>
 
             <p>Standard Fire Value</p>
-            <output name="standardFireValue"></output>
+            <output id="standardFireValue"></output>
+            <p><code>calculateStandardFireValue</code></p>
+            <p>
+              <code
+                >calculateStandardFireValue = (((firingStrength * calculateBaseEfficiency) * calculateDensityMod) * (if (building 1-.30) else 1) * (if (dismount 1-.75) else 1) *
+                (if (dismounted 1-.50) else 1) * (if (moved 1-.50) else 1))</code
+              >
+            </p>
 
             <p>Fire Unit Value</p>
             <output name="fireUnitValue"></output>
@@ -308,6 +328,7 @@
     </section>
     <section id="art-info">
       <h3>Artillery Calculator</h3>
+      <p><i>Comming Soon, Hopefully</i></p>
     </section>
   </body>
 </html>

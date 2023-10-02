@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
+    <!-- ADD CSS LATER -->
+    <script src="js/renderer.js" defer></script>
+    <title>CWB Fire Value Calculator</title>
+  </head>
+  <body>
+    <h1>Civil War Battles Fire Value Calculator</h1>
+    <h2>
+      Game
+      <select id="gamePlaying">
+        <option disabled selected value>-- Select Game --</option>
+        <option value="antietam">Antietam</option>
+        <option value="cornith">Cornith</option>
+      </select>
+    </h2>
+    <!-- Start Target Hex Information -->
+    <section id="target-hex-info">
+      <h2>Target Hex Information</h2>
+      <!-- Start Hexside Modifiers -->
+      <div id="hexsideMod">
+        <h3>Hexside Modifiers</h3>
+        <!-- Breastworks -30% -->
+        <input type="checkbox" id="breastwork" name="breastwork" value="Breastwork" />
+        <label for="Breastwork"> Breastwork</label>
+
+        <!-- Creek -20% -->
+        <input type="checkbox" id="creek" name="creek" value="Creek" />
+        <label for="Creek"> Creek</label>
+
+        <!-- Cut 50% -->
+        <input type="checkbox" id="cut" name="cut" value="Cut" />
+        <label for="Cut"> Cut</label>
+
+        <!-- Embank -70% -->
+        <input type="checkbox" id="embank" name="embank" value="Embank" />
+        <label for="Embank"> Embank</label>
+
+        <!-- Fence -20% -->
+        <input type="checkbox" id="fence" name="fence" value="Fence" />
+        <label for="Fence"> Fence</label>
+
+        <!-- Stone -40% -->
+        <input type="checkbox" id="stone" name="stone" value="Stone" />
+        <label for="Stone"> Stone</label>
+
+        <!-- Stream -10% -->
+        <input type="checkbox" id="stream" name="stream" value="Stream" />
+        <label for="Stream"> Stream</label>
+
+        <p>HexSide Modifier Total: <output id="hexsideModifier"></output></p>
+        <p><code>calculateHexsideMod</code></p>
+      </div>
+      <!-- End Hexside Modifiers -->
+
+      <!-- Start Hex Modifiers -->
+      <div id="hex-mod">
+        <h3>Hex Modifiers</h3>
+        <!-- Abatis 20% -->
+        <input type="checkbox" id="abatis" name="abatis" value="Abatis" />
+        <label for="Abatis"> Abatis</label>
+
+        <!-- Field -10% -->
+        <input type="checkbox" id="field" name="field" value="Field" />
+        <label for="Field"> Field</label>
+
+        <!-- Forest -40% -->
+        <input type="checkbox" id="forest" name="forest" value="Forest" />
+        <label for="Forest"> Forest</label>
+
+        <!-- Orchard -10% -->
+        <input type="checkbox" id="orchard" name="orchard" value="Orchard" />
+        <label for="Orchard"> Orchard</label>
+
+        <!-- Rough -30% -->
+        <input type="checkbox" id="rough" name="rough" value="Rough" />
+        <label for="Rough"> Rough</label>
+
+        <!-- Town -30% -->
+        <input type="checkbox" id="town" name="town" value="Town" />
+        <label for="Town"> Town</label>
+
+        <!-- Trench -60% -->
+        <input type="checkbox" id="trench" name="trench" value="Trench" />
+        <label for="Trench"> Trench</label>
+
+        <p>Hex Modifier Total: <output id="hexModifier"></output></p>
+        <p><code>calculateHexMod</code></p>
+      </div>
+      <!-- End Hex Modifiers -->
+
+      <!-- Start Additional Modifiers -->
+      <div id="additionalMods">
+        <h3>Additional Modifiers</h3>
+
+        <div id="elevationMod">
+          <h4>Elevation Modifier</h4>
+          <!-- Even Elevation 0% -->
+          <input type="radio" id="elevationSame" name="elevation" value="elevationSame" />
+          <label for="elevationSame">Equal Elevation</label>
+
+          <!-- Elevation1 -20% -->
+          <input type="radio" id="elevationOne" name="elevation" value="elevationOne" />
+          <label for="elevationOne">Firing Unit One Level Lower</label>
+
+          <!-- Elevation2 -40% -->
+          <input type="radio" id="elevationTwo" name="elevation" value="elevationTwo" />
+          <label for="elevationTwo">Firing Unit Two Levels Lower</label>
+
+          <p>Elevation Modifier: <output id="elevationModifier"></output></p>
+          <p><code>calculateElevationMod</code></p>
+        </div>
+        <div id="otherMods">
+          <h4>Other Modifiers</h4>
+
+          <!-- In Column 40% -->
+          <input type="checkbox" id="infantryColumn" name="infantryColumn" value="infantryColumn" />
+          <label for="infantryColumn"> Infantry in Column</label>
+
+          <!-- Limbered 40% -->
+          <input type="checkbox" id="limberedArt" name="limberedArt" value="limberedArt" />
+          <label for="limberedArt"> Artillery Limbered</label>
+
+          <!-- Mounted 40% -->
+          <input type="checkbox" id="mounted" name="mounted" value="Mounted" />
+          <label for="Mounted"> Mounted Cavalry</label>
+
+          <!-- Enfiladed 40% -->
+          <input type="checkbox" id="enfiladed" name="enfiladed" value="Enfiladed" />
+          <label for="Enfiladed"> Enfiladed</label>
+
+          <p>Other Modifiers: <output id="otherModifier"></output></p>
+          <p><code>calculateOtherMods</code></p>
+        </div>
+        <p>Total Additional Modifiers: <output id="totalAddModifier"></output></p>
+        <p><code>calculateAdditionalMods</code></p>
+      </div>
+      <!-- End Additional Modifiers -->
+
+      <!-- Start Density Modifier -->
+      <div id="density-mod">
+        <h4>Density Fire Value Multiplyer</h4>
+        <p>Estimated Force Strength <input id="targetSize" type="number" placeholder="Estimated Hex Strength" min="1" /></p>
+        <p><small>If Unknown -- Leave Unchanged</small></p>
+        <p>Density Fire Value Multiplyer: <output id="densityModifier"></output></p>
+        <p><code>calculateDensityMod</code></p>
+      </div>
+      <!-- End Density Modifier -->
+      <!-- Target Hex Total Modifiers -->
+      <div id="taget-total-mod">
+        <h4>Target Hex Total Modifiers</h4>
+        <p>Target Hex Total Modifers: <output id="targetTotalMod"></output></p>
+        <p><code>calculateHexsideMod</code></p>
+      </div>
+      <!-- End Target Hex Total Modifiers -->
+    </section>
+    <!-- End Target Hex Information -->
+
+    <section id="inf-cav-info">
+      <h2>Infantry/Dismounted Cavalry Calculator</h2>
+      <div>
+        <!-- Start Unit One Calculator -->
+        <h3>Unit 1</h3>
+        <!-- Start Firing Characteristics -->
+        <div id="fireChar">
+          <h3>Firing Characteristics</h3>
+
+          <div>
+            <p>No. of Men <input id="firingStrength" type="number" placeholder="Firing Strength" min="1" /></p>
+          </div>
+
+          <div>
+            <div>
+              <p>Range <input id="range" type="number" min="1" max="11" placeholder="Range in Hexes" /></p>
+            </div>
+
+            <!-- Start Weapon Selection -->
+            <div id="weapon">
+              <p>Weapon</p>
+              <!-- Breechload -->
+              <input type="radio" id="breechload" name="weapon" value="breechload" />
+              <label for="breechload">Breechload</label>
+
+              <!-- Carbine -->
+              <input type="radio" id="carbine" name="weapon" value="carbine" />
+              <label for="carbine">Carbine</label>
+
+              <!-- Mixed Arms -->
+              <input type="radio" id="mixedArms" name="weapon" value="mixed arms" />
+              <label for="mixed arms">Mixed Arms</label>
+
+              <!-- Multiple Arms -->
+              <input type="radio" id="multipleArms" name="weapon" value="multiple arms" />
+              <label for="multiple arms">Multiple Arms</label>
+
+              <!-- Pistol -->
+              <input type="radio" id="pistol" name="weapon" value="pistol" />
+              <label for="pistol">Pistol</label>
+
+              <!-- Repeating -->
+              <input type="radio" id="repeating" name="weapon" value="repeating" />
+              <label for="repeating">Repeating</label>
+
+              <!-- Rifle Musket -->
+              <input type="radio" id="rifleMusket" name="weapon" value="rifle musket" />
+              <label for="rifle">Rifle</label>
+
+              <!-- SB Musket -->
+              <input type="radio" id="sbMusket" name="weapon" value="sb musket" />
+              <label for="sb musket">Musket</label>
+
+              <!-- Shotgun -->
+              <input type="radio" id="shotgun" name="weapon" value="shotgun" />
+              <label for="shotgun">Shotgun</label>
+
+              <!-- Spencer Carbine -->
+              <input type="radio" id="spencerCarbine" name="weapon" value="spencer carbine" />
+              <label for="spencerCarbine">Spencer Carbine</label>
+            </div>
+            <!-- End Weapon Selection -->
+            <p>Weapon Efficiency: <output id="baseEfficiency"></output></p>
+            <p><code>calculateBaseEfficiency</code></p>
+          </div>
+        </div>
+        <!-- End Firing Characteristics -->
+
+        <!-- Start Fire Modifiers -->
+        <div>
+          <div id="fireMods">
+            <h3>Fire Modifiers</h3>
+
+            <!-- Building -30% -->
+            <input type="checkbox" id="building" name="fireMods" value="Building" />
+            <label for="building"> Building Breastwork / Trenches</label>
+
+            <!-- Dismounted -75% -->
+            <input type="checkbox" id="dismounted" name="fireMods" value="Dismounted" />
+            <label for="dismounted"> Dismounted</label>
+
+            <!-- Disrupted -50% -->
+            <input type="checkbox" id="disrupted" name="fireMods" value="Disrupted" />
+            <label for="Disrupted"> Disrupted</label>
+
+            <!-- Moved -50% -->
+            <input type="checkbox" id="movedFire" name="fireMods" value="Moved" />
+            <label for="movedFire"> Fire After Movement</label>
+          </div>
+          <!-- End Fire Modifiers -->
+
+          <!-- Start Fatigue/Quality Modifiers -->
+          <div id="fatQualMods">
+            <h3>Fatigue/Quality Modifers</h3>
+            <p>Unit Quality</p>
+
+            <!-- AB Quality 10% -->
+            <div id="unitQuality">
+              <input type="radio" id="qualityAB" name="quality" value="qualityAB" />
+              <label for="qualityAB">A/B Quality</label>
+
+              <!-- C/D Quality 0% -->
+              <input type="radio" id="qualityC" name="quality" value="qualityC" />
+              <label for="qualityCD">C/D Quality</label>
+
+              <!-- E/F Quality -10% -->
+              <input type="radio" id="qualityEF" name="quality" value="qualityEF" />
+              <label for="qualityEF">E/F Quality</label>
+            </div>
+
+            <div id="unitFatigue">
+              <p>Unit Fatigue</p>
+
+              <!-- Low Fatigue 0% -->
+              <input type="radio" id="fatigueLow" name="fatigue" value="fatigueLow" />
+              <label for="fatigueLow">Fatigue 0-299</label>
+
+              <!-- Med Fatigue -10% -->
+              <input type="radio" id="fatigueMed" name="fatigue" value="fatigueMed" />
+              <label for="fatigueMed">Fatigue 300-599</label>
+
+              <!-- High Fatigue -20% -->
+              <input type="radio" id="fatigueHigh" name="fatigue" value="fatigueHigh" />
+              <label for="fatigueHigh">Fatigue 600-799</label>
+
+              <!-- Max Fatigue -40% -->
+              <input type="radio" id="fatigueMax" name="fatigue" value="fatigueMax" />
+              <label for="fatigueMax">Fatigue Max</label>
+            </div>
+
+            <p>Fire Unit Fire Modifiers: <output id="infFireMod"></output></p>
+            <p><code>calculateInfUnitFireMod</code></p>
+          </div>
+          <!-- End Fatigue/Quality Modifiers -->
+
+          <!-- Start Calculated Fire Values -->
+          <div>
+            <h3>Calculated Fire Values</h3>
+
+            <p>Standard Fire Value</p>
+            <output id="standardFireValue"></output>
+            <p><code>calculateStandardFireValue</code></p>
+            <p>
+              <code
+                >calculateStandardFireValue = (((firingStrength * calculateBaseEfficiency) * calculateDensityMod) * (if (building 1-.30) else 1) * (if (dismount 1-.75) else 1) *
+                (if (dismounted 1-.50) else 1) * (if (moved 1-.50) else 1))</code
+              >
+            </p>
+
+            <p>Fire Unit Value</p>
+            <output name="fireUnitValue"></output>
+
+            <p>Target Unit Fire Value</p>
+            <output name="targetUnitFireValue"></output>
+
+            <p>Low Combat Result</p>
+            <u><output name="lowCombatResult"></output></u>
+
+            <p>High Combat Result</p>
+            <output name="highCombatResult"></output>
+          </div>
+          <!-- End Calculated Fire Values -->
+        </div>
+        <!-- End Unit One Calculator -->
+      </div>
+    </section>
+    <section id="art-info">
+      <h3>Artillery Calculator</h3>
+      <p><i>Comming Soon, Hopefully</i></p>
+    </section>
+  </body>
+</html>

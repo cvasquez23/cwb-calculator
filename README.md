@@ -28,6 +28,11 @@ Fire Value Calculator for WDS Civil War Battles
 - How to fetch information from a database via JS -- JSON might be better?
 - May need to restart with Electron Forge?
 
+### Questions about Game Data
+
+- Max stack values for the various games
+- ~~Complete list of firearms / guns~~ See `CWG Weapon Effectivness Template r1.xslx` from Wallace
+
 ## Authors
 
 - Wallace Welder

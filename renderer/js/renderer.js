@@ -1,29 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Event listeners
-  document.getElementById("target-size").addEventListener("input", densityModifier);
-  document.getElementById("fire-characteristics").addEventListener("input", baseEfficiency);
-  document.getElementById("fire-mods").addEventListener("change", standardFireValue);
-  document.querySelectorAll('input[name="quality"]').forEach((radio) => {
-    radio.addEventListener("change", infFireTotalModifier);
-  });
-  document.querySelectorAll('input[name="fatigue"]').forEach((radio) => {
-    radio.addEventListener("change", infFireTotalModifier);
-  });
-  document.querySelectorAll('input[name="hexside"], input[name="hex"], input[name="elevation"], input[name="other"]').forEach((input) => {
-    input.addEventListener("change", function () {
-      hexsideModifier();
-      hexModifier();
-      elevationModifier();
-      otherModifiers();
-      additionalModifiers();
-      targetUnitTotalModifier();
+  // Utility function to add event listeners to elements by selector
+  const addEventListenerBySelector = (selector, event, callback) => {
+    document.querySelectorAll(selector).forEach((element) => {
+      element.addEventListener(event, callback);
     });
-  });
+  };
 
-  const checkboxes = document.querySelectorAll("[name='fire-mods']");
-  checkboxes.forEach((checkbox) => {
-    checkbox.addEventListener("change", fireModifiers);
-  });
+  // Utility function for calling multiple functions
+  const callMultipleFunctions =
+    (...funcs) =>
+    () =>
+      funcs.forEach((func) => func());
+
+  // Add event listeners
+  addEventListenerBySelector("#target-size", "input", densityModifier);
+  addEventListenerBySelector("#fire-characteristics", "input", baseEfficiency);
+  addEventListenerBySelector("#fire-mods", "change", standardFireValue);
+  addEventListenerBySelector('input[name="quality"], input[name="fatigue"]', "change", infFireTotalModifier);
+
+  addEventListenerBySelector(
+    'input[name="hexside"], input[name="hex"], input[name="elevation"], input[name="other"]',
+    "change",
+    callMultipleFunctions(hexsideModifier, hexModifier, elevationModifier, otherModifiers, additionalModifiers, targetUnitTotalModifier, lowCombatValue, highCombatValue)
+  );
+
+  addEventListenerBySelector("[name='fire-mods']", "change", callMultipleFunctions(fireModifiers, lowCombatValue, highCombatValue));
 
   // Initialize values
   densityModifier();
@@ -34,22 +35,25 @@ document.addEventListener("DOMContentLoaded", function () {
   otherModifiers();
   additionalModifiers();
   targetUnitTotalModifier();
+  infFatigueModifier();
+  infQualityModifier();
+  infFireTotalModifier();
   fireModifiers();
+  lowCombatValue();
+  highCombatValue();
 
+  // TARGET HEX FUNCTIONS
+  // DENSITY MODIFIER
   function densityModifier() {
-    // Get stackValue from the input element id "target-size"
     const targetSizeInput = document.getElementById("target-size");
     const stackValue = parseFloat(targetSizeInput.value);
 
-    // Will be replaced with a fetch to a json file
     const maxStackValue = 1000;
 
-    // Calculate stackValueRatio
     const stackValueRatio = stackValue / maxStackValue;
 
     let result;
 
-    // Check stackValueRatio against specific ranges and update result accordingly
     if (!isNaN(stackValue)) {
       if (stackValueRatio <= 0.67) {
         result = 1;
@@ -122,13 +126,69 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // Set the result in the HTML element with id "density-modifier"
     const densityModifierOutput = document.getElementById("density-modifier");
-    densityModifierOutput.textContent = result.toFixed(2); // Assuming you want 2 decimal places
+    densityModifierOutput.textContent = result.toFixed(2);
 
     standardFireValue();
   }
 
+  // TARGET UNIT MODIFIER = HEXSIDE MODIFIER + HEX MODIFIER + ADDITIONAL MODIFIERS
+  // HEXSIDE MODIFIER
+  function hexsideModifier() {
+    const hexsideInputs = document.querySelectorAll('input[name="hexside"]:checked');
+    let sum = 0;
+    hexsideInputs.forEach((input) => {
+      sum += parseFloat(input.value);
+    });
+    document.getElementById("hexside-modifier").textContent = (sum * 100).toFixed(0) + "%";
+  }
+
+  // HEX MODIFIER
+  function hexModifier() {
+    const hexInputs = document.querySelectorAll('input[name="hex"]:checked');
+    let sum = 0;
+    hexInputs.forEach((input) => {
+      sum += parseFloat(input.value);
+    });
+    document.getElementById("hex-modifier").textContent = (sum * 100).toFixed(0) + "%";
+  }
+
+  // ELEVATION MODIFIER
+  function elevationModifier() {
+    const elevationInput = document.querySelector('input[name="elevation"]:checked');
+    const value = parseFloat(elevationInput.value);
+    document.getElementById("elevation-modifier").textContent = (value * 100).toFixed(0) + "%";
+  }
+
+  // OTHER MODIFIERS
+  function otherModifiers() {
+    const otherInputs = document.querySelectorAll('input[name="other"]:checked');
+    let sum = 0;
+    otherInputs.forEach((input) => {
+      sum += parseFloat(input.value);
+    });
+    document.getElementById("other-modifiers").textContent = (sum * 100).toFixed(0) + "%";
+  }
+
+  // ADDITIONAL MODIFIERS = ELEVATION MODIFIER + OTHER MODIFIERS
+  function additionalModifiers() {
+    const elevationValue = parseFloat(document.getElementById("elevation-modifier").textContent) / 100 || 0;
+    const otherValue = parseFloat(document.getElementById("other-modifiers").textContent) / 100 || 0;
+    const total = elevationValue + otherValue;
+    document.getElementById("additional-modifier").textContent = (total * 100).toFixed(0) + "%";
+  }
+
+  // TARGET UNIT MODIFIER
+  function targetUnitTotalModifier() {
+    const hexsideValue = parseFloat(document.getElementById("hexside-modifier").textContent) / 100 || 0;
+    const hexValue = parseFloat(document.getElementById("hex-modifier").textContent) / 100 || 0;
+    const additionalValue = parseFloat(document.getElementById("additional-modifier").textContent) / 100 || 0;
+    const total = hexsideValue + hexValue + additionalValue;
+    document.getElementById("target-unit-total-modifier").textContent = (total * 100).toFixed(0) + "%";
+  }
+
+  // INFANTRY FUNCTIONS
+  // BASE EFFICIENCY
   async function baseEfficiency() {
     const selectedRange = document.getElementById("range").value;
     const selectedWeapon = document.querySelector('input[name="weapon"]:checked');
@@ -155,19 +215,17 @@ document.addEventListener("DOMContentLoaded", function () {
     standardFireValue();
   }
 
+  // FIRE MODIFIERS
   function fireModifiers() {
-    // Fetch the values of the checkboxes, using 1 as a default if unchecked
     let mod_building = document.getElementById("building").checked ? parseFloat(document.getElementById("building").value) : 1;
     let mod_dismounted = document.getElementById("dismounted").checked ? parseFloat(document.getElementById("dismounted").value) : 1;
     let mod_disrupted = document.getElementById("disrupted").checked ? parseFloat(document.getElementById("disrupted").value) : 1;
     let mod_moved = document.getElementById("moved-fire").checked ? parseFloat(document.getElementById("moved-fire").value) : 1;
 
-    // Calculate the total fire modifier by multiplying all individual modifiers together
     let totalModifier = mod_building * mod_dismounted * mod_disrupted * mod_moved;
 
-    // Output the result to the designated element, converting it to a percentage for presentation
-    let percentageValue = (1 - totalModifier) * 100; // Converting the modifier to a readable percentage reduction
-    document.getElementById("fire-modifier").textContent = `-${percentageValue.toFixed(2)}%`; // Display the result as a percentage with two decimal places
+    let percentageValue = (1 - totalModifier) * 100;
+    document.getElementById("fire-modifier").textContent = `-${percentageValue.toFixed(2)}%`;
   }
 
   // STANDARD FIRE VALUE
@@ -175,141 +233,77 @@ document.addEventListener("DOMContentLoaded", function () {
     let baseEfficiency = parseFloat(document.getElementById("base-efficiency").textContent);
     let densityModifier = parseFloat(document.getElementById("density-modifier").textContent);
 
-    // Fetching each modifier
     let mod_building = document.getElementById("building").checked ? parseFloat(document.getElementById("building").value) : 1;
     let mod_dismounted = document.getElementById("dismounted").checked ? parseFloat(document.getElementById("dismounted").value) : 1;
     let mod_disrupted = document.getElementById("disrupted").checked ? parseFloat(document.getElementById("disrupted").value) : 1;
     let mod_moved = document.getElementById("moved-fire").checked ? parseFloat(document.getElementById("moved-fire").value) : 1;
 
-    // Calculate the standardFireValue using the given formula
     let standardFireValue = baseEfficiency * densityModifier * mod_building * mod_dismounted * mod_disrupted * mod_moved;
 
-    // Update the content of the element with the calculated value
-    document.getElementById("standard-fire-value").textContent = standardFireValue.toFixed(2); // Rounded to two decimal places for presentation
+    document.getElementById("standard-fire-value").textContent = standardFireValue.toFixed(2);
+
+    lowCombatValue();
+    highCombatValue();
   }
 
   // INFANTRY FIRE UNIT MODIFIER
-  // 1. Function to compute the Infantry Quality Modifier
+  // QUALITY MODIFIER
   function infQualityModifier() {
-    // Get the selected radio button for quality
     const selectedQuality = document.querySelector('input[name="quality"]:checked');
-
-    // If a radio button is selected, parse its value; otherwise, default to 0
     const qualityValue = selectedQuality ? parseFloat(selectedQuality.value) : 0;
-
-    // Convert the result to a percentage for display
     const percentageValue = (qualityValue * 100).toFixed(0) + "%";
 
-    // Update the DOM element with the computed value
     document.getElementById("inf-quality-mod").textContent = percentageValue;
 
-    // Return the raw value for use in other calculations
     return qualityValue;
   }
 
-  // 2. Function to compute the Infantry Fatigue Modifier
+  // FATIGUE MODIFIER
   function infFatigueModifier() {
-    // Get the selected radio button for fatigue
     const selectedFatigue = document.querySelector('input[name="fatigue"]:checked');
-
-    // If a radio button is selected, parse its value; otherwise, default to 0
     const fatigueValue = selectedFatigue ? parseFloat(selectedFatigue.value) : 0;
-
-    // Convert the result to a percentage for display
     const percentageValue = (fatigueValue * 100).toFixed(0) + "%";
 
-    // Update the DOM element with the computed value
     document.getElementById("inf-fatigue-mod").textContent = percentageValue;
 
-    // Return the raw value for use in other calculations
     return fatigueValue;
   }
 
-  // 3. Function to compute the Total Infantry Fire Modifier
+  // INF FIRE TOTAL MODIFIER
   function infFireTotalModifier() {
-    // Get the result of quality and fatigue functions
     const totalQualityValue = infQualityModifier();
     const totalFatigueValue = infFatigueModifier();
 
-    // Compute the total modifier by adding quality and fatigue modifiers
     const totalModifier = totalQualityValue + totalFatigueValue;
 
-    // Convert the result to a percentage for display
     const percentageValue = (totalModifier * 100).toFixed(0) + "%";
 
-    // Update the DOM element with the computed total value
     document.getElementById("inf-fire-mod").textContent = percentageValue;
+
+    lowCombatValue();
+    highCombatValue();
   }
 
-  infFireTotalModifier();
-
-  function hexsideModifier() {
-    const hexsideInputs = document.querySelectorAll('input[name="hexside"]:checked');
-    let sum = 0;
-    hexsideInputs.forEach((input) => {
-      sum += parseFloat(input.value);
-    });
-    document.getElementById("hexside-modifier").textContent = (sum * 100).toFixed(0) + "%";
-  }
-
-  function hexModifier() {
-    const hexInputs = document.querySelectorAll('input[name="hex"]:checked');
-    let sum = 0;
-    hexInputs.forEach((input) => {
-      sum += parseFloat(input.value);
-    });
-    document.getElementById("hex-modifier").textContent = (sum * 100).toFixed(0) + "%";
-  }
-
-  function elevationModifier() {
-    const elevationInput = document.querySelector('input[name="elevation"]:checked');
-    const value = parseFloat(elevationInput.value);
-    document.getElementById("elevation-modifier").textContent = (value * 100).toFixed(0) + "%";
-  }
-
-  function otherModifiers() {
-    const otherInputs = document.querySelectorAll('input[name="other"]:checked');
-    let sum = 0;
-    otherInputs.forEach((input) => {
-      sum += parseFloat(input.value);
-    });
-    document.getElementById("other-modifiers").textContent = (sum * 100).toFixed(0) + "%";
-  }
-
-  function additionalModifiers() {
-    const elevationValue = parseFloat(document.getElementById("elevation-modifier").textContent) / 100 || 0;
-    const otherValue = parseFloat(document.getElementById("other-modifiers").textContent) / 100 || 0;
-    const total = elevationValue + otherValue;
-    document.getElementById("additional-modifier").textContent = (total * 100).toFixed(0) + "%";
-  }
-
-  function targetUnitTotalModifier() {
-    const hexsideValue = parseFloat(document.getElementById("hexside-modifier").textContent) / 100 || 0;
-    const hexValue = parseFloat(document.getElementById("hex-modifier").textContent) / 100 || 0;
-    const additionalValue = parseFloat(document.getElementById("additional-modifier").textContent) / 100 || 0;
-    const total = hexsideValue + hexValue + additionalValue;
-    document.getElementById("target-unit-total-modifier").textContent = (total * 100).toFixed(0) + "%";
-  }
-
+  // FINAL CALCULATIONS
+  // LOW COMBAT VALUE
   function lowCombatValue() {
-    let standardFireValue = parseFloat(document.getElementById("standard-fire-value").textContent);
-    let infFireTotalModifier = parseFloat(document.getElementById("inf-fire-total-modifier").textContent);
-    let targetUnitFireModifiers = parseFloat(document.getElementById("target-unit-fire-modifiers").textContent);
+    const standardFireValue = parseFloat(document.getElementById("standard-fire-value").textContent) || 0;
+    const infFireTotalModifier = parseFloat(document.getElementById("inf-fire-mod").textContent) / 100 + 1 || 1;
+    const targetUnitFireModifiers = parseFloat(document.getElementById("target-unit-total-modifier").textContent) / 100 + 1 || 1;
 
-    let result = (standardFireValue * infFireTotalModifier * targetUnitFireModifiers * 5) / 1000;
+    const result = (standardFireValue * infFireTotalModifier * targetUnitFireModifiers * 5) / 1000 || 0;
 
-    // Update the output
-    document.getElementById("low-combat-value").textContent = result.toFixed(2); // To format to two decimal places
+    document.getElementById("low-combat-value").textContent = result.toFixed(2);
   }
 
+  // HIGH COMBAT VALUE
   function highCombatValue() {
-    let standardFireValue = parseFloat(document.getElementById("standard-fire-value").textContent);
-    let infFireTotalModifier = parseFloat(document.getElementById("inf-fire-total-modifier").textContent);
-    let targetUnitFireModifiers = parseFloat(document.getElementById("target-unit-fire-modifiers").textContent);
+    const standardFireValue = parseFloat(document.getElementById("standard-fire-value").textContent) || 0;
+    const infFireTotalModifier = parseFloat(document.getElementById("inf-fire-mod").textContent) / 100 + 1 || 1;
+    const targetUnitFireModifiers = parseFloat(document.getElementById("target-unit-total-modifier").textContent) / 100 + 1 || 1;
 
-    let result = (standardFireValue * infFireTotalModifier * targetUnitFireModifiers * 25) / 1000;
+    const result = (standardFireValue * infFireTotalModifier * targetUnitFireModifiers * 25) / 1000 || 0;
 
-    // Update the output
-    document.getElementById("high-combat-value").textContent = result.toFixed(2); // To format to two decimal places
+    document.getElementById("high-combat-value").textContent = result.toFixed(2);
   }
 });

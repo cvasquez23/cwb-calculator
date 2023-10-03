@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
     <!-- ADD CSS LATER -->
     <script src="js/renderer.js" defer></script>
+    <script src="js/artCalc.js" defer></script>
     <title>CWB Fire Value Calculator</title>
   </head>
   <body>
@@ -153,13 +154,15 @@
     </section>
     <!-- End Target Hex Information -->
 
+    <hr />
+    <!-- Start Inf/Cav Calculator -->
     <section id="inf-cav-info">
       <h2>Infantry/Dismounted Cavalry Calculator</h2>
       <!-- Start Unit One Calculator -->
       <div id="unit-1-calculator">
         <h3>Unit 1</h3>
         <!-- Start Firing Characteristics -->
-        <div id="fire-characteristics">
+        <div id="inf-fire-characteristics">
           <h3>Firing Characteristics</h3>
 
           <div>
@@ -313,20 +316,268 @@
           </code>
 
           <!-- Low Combat Result -->
-          <p>Low Combat Value: <output name="low-combat-value"></output></p>
+          <p>Low Combat Value: <output id="low-combat-value"></output></p>
           <code>lowCombatValue</code> <br />
           <code>lowCombatValue = (standardFireValue * infFireTotalModifier * targetUnitFireModifiers * 5) / 1000</code>
 
           <!-- High Combat Result -->
-          <p>High Combat Value: <output name="high-combat-value"></output></p>
+          <p>High Combat Value: <output id="high-combat-value"></output></p>
           <code>highCombatValue</code> <br />
-          <code>lowCombatValue = (standardFireValue * infFireTotalModifier * targetUnitFireModifiers * 25) / 1000</code>
+          <code>highCombatValue = (standardFireValue * infFireTotalModifier * targetUnitFireModifiers * 25) / 1000</code>
         </div>
         <!-- End Calculated Fire Values -->
       </div>
       <!-- End Unit One Calculator -->
     </section>
+    <!-- End Inf/Cav Calculator -->
+
+    <hr />
     <!-- Start Artillery Calculator  -->
+    <section>
+      <h2>Artillery Calculator</h2>
+      <div id="art-fire-characteristics">
+        <h3>Firing Characteristics</h3>
+
+        <div>
+          <label for="art-firing-strength">No. of Guns </label>
+          <input id="art-firing-strength" type="number" min="1" value="1" />
+        </div>
+
+        <div>
+          <div>
+            <label for="art-range">Range</label>
+            <input id="art-range" type="number" min="1" max="50" value="10" />
+          </div>
+
+          <!-- Start Weapon Selection -->
+          <div id="art-weapon">
+            <p>Weapon</p>
+            <!-- List of Artillery Weapons -->
+            <form>
+              <p><strong>Columbiad </strong></p>
+              <input type="radio" id="col 8in" name="art-weapon" value="col 8in" />
+              <label for="col 8in">Columbiad 8 in.</label>
+
+              <input type="radio" id="col 10in" name="art-weapon" value="col 10in" />
+              <label for="col 10in">Columbiad 10 in.</label><br />
+
+              <p><strong>Dahlgren </strong></p>
+              <input type="radio" id="dahlgren 8in" name="art-weapon" value="dahlgren 8in" />
+              <label for="dahlgren 8in">Dahlgren 8 in.</label>
+
+              <input type="radio" id="dahlgren 9in" name="art-weapon" value="dahlgren 9in" />
+              <label for="dahlgren 9in">Dahlgren 9 in.</label>
+
+              <input type="radio" id="dahlgren 11in" name="art-weapon" value="dahlgren 11in" />
+              <label for="dahlgren 11in">Dahlgren 11 in.</label><br />
+
+              <p><strong>Howitzer </strong></p>
+              <input type="radio" id="ho 6.4in" name="art-weapon" value="ho 6.4in" />
+              <label for="ho 6.4in">Howitzer 6.4 in.</label>
+
+              <input type="radio" id="ho 8in" name="art-weapon" value="ho 8in" />
+              <label for="ho 8in">Howitzer 8 in.</label>
+
+              <input type="radio" id="ho 12pdr" name="art-weapon" value="ho 12pdr" />
+              <label for="ho 12pdr">Howitzer 12pdr</label>
+
+              <input type="radio" id="ho 24pdr" name="art-weapon" value="ho 24pdr" />
+              <label for="ho 24pdr">Howitzer 24pdr</label>
+
+              <input type="radio" id="ho 12pdr mountain" name="art-weapon" value="ho 12pdr mountain" />
+              <label for="ho 12pdr mountain">Howitzer 12pdr Mountain</label><br />
+
+              <p><strong>James </strong></p>
+              <input type="radio" id="james 6dr" name="art-weapon" value="james 6dr" />
+              <label for="james 6dr">James 6dr</label>
+
+              <input type="radio" id="james 12pdr" name="art-weapon" value="james 12pdr" />
+              <label for="james 12pdr">James 12pdr</label>
+
+              <input type="radio" id="james 14pdr" name="art-weapon" value="james 14pdr" />
+              <label for="james 14pdr">James 14pdr</label><br />
+
+              <p><strong>Parrott </strong></p>
+              <input type="radio" id="parrott 10pdr" name="art-weapon" value="parrott 10pdr" />
+              <label for="parrott 10pdr">Parrott 10pdr</label>
+
+              <input type="radio" id="parrott 20pdr" name="art-weapon" value="parrott 20pdr" />
+              <label for="parrott 20pdr">Parrott 20pdr</label>
+
+              <input type="radio" id="parrott 30pdr" name="art-weapon" value="parrott 30pdr" />
+              <label for="parrott 30pdr">Parrott 30pdr</label>
+
+              <input type="radio" id="parrott 100pdr" name="art-weapon" value="parrott 100pdr" />
+              <label for="parrott 100pdr">Parrott 100pdr</label>
+
+              <input type="radio" id="parrott 200pdr" name="art-weapon" value="parrott 200pdr" />
+              <label for="parrott 200pdr">Parrott 200pdr</label><br />
+
+              <p><strong>Rifled </strong></p>
+              <input type="radio" id="rifled 6pdr" name="art-weapon" value="rifled 6pdr" />
+              <label for="rifled 6pdr">Rifled 6pdr</label>
+
+              <input type="radio" id="rifled 18pdr" name="art-weapon" value="rifled 18pdr" />
+              <label for="rifled 18pdr">Rifled 18pdr</label>
+
+              <input type="radio" id="rifled 24pdr" name="art-weapon" value="rifled 24pdr" />
+              <label for="rifled 24pdr">Rifled 24pdr</label>
+
+              <input type="radio" id="rifled 32pdr" name="art-weapon" value="rifled 32pdr" />
+              <label for="rifled 32pdr">Rifled 32pdr</label>
+
+              <input type="radio" id="rifled 42pdr" name="art-weapon" value="rifled 42pdr" />
+              <label for="rifled 42pdr">Rifled 42pdr</label>
+
+              <input type="radio" id="rifled 2.25in mtn" name="art-weapon" value="rifled 2.25in mtn" />
+              <label for="rifled 2.25in mtn">Rifled 2.25in Mountain</label>
+
+              <input type="radio" id="rifled 3in" name="art-weapon" value="rifled 3in" />
+              <label for="rifled 3in">Rifled 3in</label>
+
+              <input type="radio" id="rifled 3in naval" name="art-weapon" value="rifled 3in naval" />
+              <label for="rifled 3i -naval">Rifled 3in Naval</label>
+
+              <input type="radio" id="rifled 3.67in sawyer" name="art-weapon" value="rifled 3.67in sawyer" />
+              <label for="rifled 3.67in sawyer">Rifled 3.67in Sawyer</label>
+
+              <input type="radio" id="rifled 4.5in" name="art-weapon" value="rifled 4.5in" />
+              <label for="rifled 4.5in">Rifled 4.5in</label>
+
+              <input type="radio" id="rifled 6.5in" name="art-weapon" value="rifled 6.5in" />
+              <label for="rifled 6.5in">Rifled 6.5in</label>
+
+              <input type="radio" id="rifled blakely" name="art-weapon" value="rifled blakely" />
+              <label for="rifled blakely">Rifled Blakely</label>
+
+              <input type="radio" id="rifled brooke" name="art-weapon" value="rifled brooke" />
+              <label for="rifled brooke">Rifled Brooke</label>
+
+              <input type="radio" id="rifled whitworth" name="art-weapon" value="rifled whitworth" />
+              <label for="rifled whitworth">Rifled Whitworth</label><br />
+
+              <p><strong>Smoothbore </strong></p>
+              <input type="radio" id="sb 6pdr" name="art-weapon" value="sb 6pdr" />
+              <label for="sb 6pdr">Smoothbore 6pdr</label>
+
+              <input type="radio" id="sb 24pdr" name="art-weapon" value="sb 24pdr" />
+              <label for="sb 24pdr">Smoothbore 24pdr</label>
+
+              <input type="radio" id="sb 32pdr" name="art-weapon" value="sb 32pdr" />
+              <label for="sb 32pdr">Smoothbore 32pdr</label>
+
+              <input type="radio" id="sb 42pdr" name="art-weapon" value="sb 42pdr" />
+              <label for="sb 42pdr">Smoothbore 42pdr</label>
+
+              <input type="radio" id="sb 6pdr wiard" name="art-weapon" value="sb 6pdr wiard" />
+              <label for="sb 6pdr wiard">Smoothbore 6pdr Wiard</label>
+
+              <input type="radio" id="sb 12pdr wiard" name="art-weapon" value="sb 12pdr wiard" />
+              <label for="sb 12pdr wiard">Smoothbore 12pdr Wiard</label>
+
+              <input type="radio" id="sb napoleon" name="art-weapon" value="sb napoleon" />
+              <label for="sb napoleon">Napoleon</label><br />
+
+              <p><strong>Siege </strong></p>
+              <input type="radio" id="siege 24pdr" name="art-weapon" value="siege 24pdr" />
+              <label for="siege 24pdr">Siege 24pdr</label><br />
+            </form>
+          </div>
+          <!-- End Weapon Selection -->
+          <p>Artillery Weapon Efficiency: <output id="art-weapon-efficiency"></output></p>
+          <p>Artillery Base Efficiency: <output id="art-base-efficiency"></output></p>
+          <code>artBaseEfficiency</code> <br />
+          <code>artBaseEfficiency = art-weapon-efficiency * art-firing-strength * 50</code>
+        </div>
+
+        <!-- Start Fire Modifiers -->
+        <div id="art-fire-mods">
+          <h3>Fire Modifiers</h3>
+          <!-- Disrupted -50% -->
+          <input type="checkbox" id="art-disrupted" name="art-fire-mods" value=".50" />
+          <label for="disrupted"> Disrupted</label>
+
+          <!-- Moved -50% -->
+          <input type="checkbox" id="art-moved-fire" name="art-fire-mods" value=".50" />
+          <label for="moved"> Fire After Movement</label>
+
+          <p>Artillery Fire Modifiers: <output id="art-fire-modifier"></output></p>
+          <code>artFireModifiers</code>
+        </div>
+        <!-- End Fire Modifiers -->
+
+        <!-- Start Fatigue/Quality Modifiers -->
+        <div id="art-fatigue-quality-mods">
+          <h3>Fatigue/Quality Modifers</h3>
+          <p>Artillery Unit Quality</p>
+
+          <!-- AB Quality 10% -->
+          <div id="art-quality">
+            <input type="radio" id="art-quality-ab" name="art-quality" value=".10" />
+            <label for="quality-ab">A/B Quality</label>
+
+            <!-- C/D Quality 0% -->
+            <input type="radio" id="art-quality-cd" name="art-quality" value="0" />
+            <label for="quality-cd">C/D Quality</label>
+
+            <!-- E/F Quality -10% -->
+            <input type="radio" id="art-quality-ef" name="art-quality" value="-.10" />
+            <label for="quality-ef">E/F Quality</label>
+
+            <p>Quality Modifier: <output id="art-quality-mod"></output></p>
+            <code>artQualityModifier</code>
+          </div>
+
+          <div id="art-fatigue">
+            <p>Artillery Unit Fatigue</p>
+
+            <!-- Low Fatigue 0% -->
+            <input type="radio" id="art-fatigue-low" name="art-fatigue" value="0" />
+            <label for="fatigue-low">Fatigue 0-299</label>
+
+            <!-- Med Fatigue -10% -->
+            <input type="radio" id="art-fatigue-med" name="art-fatigue" value="-.10" />
+            <label for="fatigue-med">Fatigue 300-599</label>
+
+            <!-- High Fatigue -20% -->
+            <input type="radio" id="art-fatigue-high" name="art-fatigue" value="-.20" />
+            <label for="fatigue-high">Fatigue 600-799</label>
+
+            <!-- Max Fatigue -40% -->
+            <input type="radio" id="art-fatigue-max" name="art-fatigue" value="-.40" />
+            <label for="fatigue-max">Fatigue Max</label>
+
+            <p>Fatigue Modifier: <output id="art-fatigue-mod"></output></p>
+            <code>artFatigueModifier</code>
+          </div>
+
+          <p>Artillery Fire Unit Total Modifiers: <output id="art-fire-mod"></output></p>
+          <code>artFireTotalModifier</code> <br />
+          <code>artFireTotalModifier = artQualityModifier + artFatigueModifier</code>
+        </div>
+        <!-- End Fatigue/Quality Modifiers -->
+
+        <!-- Start Artillery Calculated Fire Values -->
+        <div>
+          <h3>Calculated Fire Values</h3>
+
+          <p>Standard Fire Value: <output id="art-standard-fire-value"></output></p>
+          <code>artStandardFireValue</code> <br />
+          <code>artStandardFireValue = ((artBaseEfficiency * densityMod) * (if (disrupted .50) else 1) * (if (moved .50) else 1)) </code>
+
+          <!-- Low Combat Result -->
+          <p>Low Combat Value: <output id="art-low-combat-value"></output></p>
+          <code>artLowCombatValue</code> <br />
+          <code>artLowCombatValue = (artStandardFireValue * artFireTotalModifier * targetUnitFireModifiers * 5) / 1000</code>
+
+          <!-- High Combat Result -->
+          <p>High Combat Value: <output id="art-high-combat-value"></output></p>
+          <code>artHighCombatValue</code> <br />
+          <code>artHighCombatValue = (artStandardFireValue * artFireTotalModifier * targetUnitFireModifiers * 25) / 1000</code>
+        </div>
+        <!-- End Artillery Calculated Fire Values -->
+      </div>
+    </section>
     <!-- End Artillery Calculator -->
   </body>
 </html>

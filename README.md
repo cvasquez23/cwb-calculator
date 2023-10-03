@@ -1,4 +1,4 @@
-# Civil War Battles Fire Value Calculator
+# Civil War Battles Fire Value Calculator 0.1.0
 
 Fire Value Calculator for WDS Civil War Battles
 
@@ -17,15 +17,26 @@ Fire Value Calculator for WDS Civil War Battles
 
 ## Future Development
 
+# v1.0.0
+
+- Add css stylings
+- Expand supported games
+- Expanded accessability and screen reader support
+
 ### To Do
 
-### Planned Functionality
+- add 'inf' prefixes to infantry calculations
+- create game selection and fetch appropriate JSON DBs based on selection
+- 👏 clean 👏 up 👏 the 👏 code!
+- Fix James 6pdr listed as "james 6dr" in DB
 
-### Known Bugs and Issues
+### Known Bugs, Issues, and Limitations
+
+- v0.5.0 only supports WDS CWB Antietam
 
 ### Issues to Reasearch
 
-- How to fetch information from a database via JS -- JSON might be better?
+- ~~How to fetch information from a database via JS -- JSON might be better?~~
 - May need to restart with Electron Forge?
 
 ### Questions about Game Data

@@ -17,7 +17,7 @@ Fire Value Calculator for WDS Civil War Battles
 
 ## Future Development
 
-# v1.0.0
+### v1.0.0
 
 - Add css stylings
 - Expand supported games

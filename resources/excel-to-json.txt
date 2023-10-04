@@ -1,0 +1,24 @@
+Convert .xlsx file to .csv
+Import here https://www.convertcsv.com/csv-to-json.htm
+
+If all values not wrapped in "" run this in powershell to put them in ""
+
+# Define the path to the JSON file
+$jsonPath = "C:\Users\cvasquez\Desktop\cwb-calculator\database\FILE.json"
+
+# Read the content from the JSON file
+$content = Get-Content -Path $jsonPath -Raw | ConvertFrom-Json
+
+# Update each property's value to be a string if it's an integer
+$content | ForEach-Object {
+    $_.PSObject.Properties | ForEach-Object {
+        if ($_.Value -is [int]) {
+            $_.Value = $_.Value.ToString()
+        }
+    }
+}
+
+# Convert the updated content back to JSON and write to the file
+$content | ConvertTo-Json -Depth 10 | Set-Content -Path $jsonPath
+
+Write-Host "JSON file updated successfully!"

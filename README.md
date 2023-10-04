@@ -1,4 +1,4 @@
-# Civil War Battles Fire Value Calculator 0.1.0
+# Civil War Battles Fire Value Calculator 0.5.0
 
 Fire Value Calculator for WDS Civil War Battles
 

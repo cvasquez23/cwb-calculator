@@ -1,7 +1,7 @@
 {
   "name": "cwb-calculator",
   "productName": "CWB Fire Value Calculator",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "description": "Fire Combat Calculator for WDS Civil War Battles",
   "main": "main.js",
   "scripts": {

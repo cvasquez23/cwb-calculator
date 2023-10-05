@@ -265,7 +265,7 @@
             <label for="quality-ab">A/B Quality</label>
 
             <!-- C/D Quality 0% -->
-            <input type="radio" id="quality-cd" name="quality" value="0" />
+            <input type="radio" id="quality-cd" name="quality" value="0" checked />
             <label for="quality-cd">C/D Quality</label>
 
             <!-- E/F Quality -10% -->
@@ -280,7 +280,7 @@
             <p>Unit Fatigue</p>
 
             <!-- Low Fatigue 0% -->
-            <input type="radio" id="fatigue-low" name="fatigue" value="0" />
+            <input type="radio" id="fatigue-low" name="fatigue" value="0" checked />
             <label for="fatigue-low">Fatigue 0-299</label>
 
             <!-- Med Fatigue -10% -->
@@ -496,11 +496,11 @@
           <h3>Fire Modifiers</h3>
           <!-- Disrupted -50% -->
           <input type="checkbox" id="art-disrupted" name="art-fire-mods" value=".50" />
-          <label for="disrupted"> Disrupted</label>
+          <label for="art-disrupted"> Disrupted</label>
 
           <!-- Moved -50% -->
           <input type="checkbox" id="art-moved-fire" name="art-fire-mods" value=".50" />
-          <label for="moved"> Fire After Movement</label>
+          <label for="art-moved"> Fire After Movement</label>
 
           <p>Artillery Fire Modifiers: <output id="art-fire-modifier"></output></p>
           <code>artFireModifiers</code>
@@ -515,15 +515,15 @@
           <!-- AB Quality 10% -->
           <div id="art-quality">
             <input type="radio" id="art-quality-ab" name="art-quality" value=".10" />
-            <label for="quality-ab">A/B Quality</label>
+            <label for="art-quality-ab">A/B Quality</label>
 
             <!-- C/D Quality 0% -->
-            <input type="radio" id="art-quality-cd" name="art-quality" value="0" />
-            <label for="quality-cd">C/D Quality</label>
+            <input type="radio" id="art-quality-cd" name="art-quality" value="0" checked />
+            <label for="art-quality-cd">C/D Quality</label>
 
             <!-- E/F Quality -10% -->
             <input type="radio" id="art-quality-ef" name="art-quality" value="-.10" />
-            <label for="quality-ef">E/F Quality</label>
+            <label for="art-quality-ef">E/F Quality</label>
 
             <p>Quality Modifier: <output id="art-quality-mod"></output></p>
             <code>artQualityModifier</code>
@@ -533,20 +533,20 @@
             <p>Artillery Unit Fatigue</p>
 
             <!-- Low Fatigue 0% -->
-            <input type="radio" id="art-fatigue-low" name="art-fatigue" value="0" />
-            <label for="fatigue-low">Fatigue 0-299</label>
+            <input type="radio" id="art-fatigue-low" name="art-fatigue" value="0" checked />
+            <label for="art-fatigue-low">Fatigue 0-299</label>
 
             <!-- Med Fatigue -10% -->
             <input type="radio" id="art-fatigue-med" name="art-fatigue" value="-.10" />
-            <label for="fatigue-med">Fatigue 300-599</label>
+            <label for="art-fatigue-med">Fatigue 300-599</label>
 
             <!-- High Fatigue -20% -->
             <input type="radio" id="art-fatigue-high" name="art-fatigue" value="-.20" />
-            <label for="fatigue-high">Fatigue 600-799</label>
+            <label for="art-fatigue-high">Fatigue 600-799</label>
 
             <!-- Max Fatigue -40% -->
             <input type="radio" id="art-fatigue-max" name="art-fatigue" value="-.40" />
-            <label for="fatigue-max">Fatigue Max</label>
+            <label for="art-fatigue-max">Fatigue Max</label>
 
             <p>Fatigue Modifier: <output id="art-fatigue-mod"></output></p>
             <code>artFatigueModifier</code>

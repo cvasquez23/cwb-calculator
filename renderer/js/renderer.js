@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Add event listeners
   addEventListenerBySelector("#target-size", "input", densityModifier);
-  addEventListenerBySelector("#fire-characteristics", "input", baseEfficiency);
+  addEventListenerBySelector("#inf-fire-characteristics", "input", baseEfficiency);
   addEventListenerBySelector("#fire-mods", "change", standardFireValue);
   addEventListenerBySelector('input[name="quality"], input[name="fatigue"]', "change", infFireTotalModifier);
 

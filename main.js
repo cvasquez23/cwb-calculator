@@ -8,15 +8,16 @@ const isMac = process.platform === "darwin";
 // Creat Main Window
 const createMainWindow = () => {
   const mainWindow = new BrowserWindow({
-    title: "CWB Fire Value Calculator 0.1.0",
+    title: "CWB Fire Value Calculator 0.5.0",
     width: isDev ? 1300 : 800,
     height: 600,
+    // icon: `${__dirname}/assets/icons/Icon_256x256.png`,
   });
 
   // Open devtools if in dev env
-  // if(isDev) {
-  //   mainWindow.webContents.openDevTools();
-  // }
+  if (isDev) {
+    mainWindow.webContents.openDevTools();
+  }
 
   mainWindow.loadFile(path.join(__dirname, "./renderer/index.html"));
 };
@@ -24,7 +25,7 @@ const createMainWindow = () => {
 // Create about window
 function createAboutWindow() {
   const aboutWindow = new BrowserWindow({
-    title: "About CWB Fire Value Calculator 0.1.0",
+    title: "About CWB Fire Value Calculator 0.5.0",
     width: 300,
     height: 300,
   });

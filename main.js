@@ -5,6 +5,10 @@ const { app, BrowserWindow, Menu } = require("electron");
 const isDev = process.env.NODE_ENV !== "production";
 const isMac = process.platform === "darwin";
 
+if (require("electron-squirrel-startup")) {
+  app.quit();
+}
+
 let mainWindow;
 
 // Create Main Window

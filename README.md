@@ -37,7 +37,7 @@ Fire Value Calculator for WDS Civil War Battles
 ### Issues to Reasearch
 
 - ~~How to fetch information from a database via JS -- JSON might be better?~~
-- May need to restart with Electron Forge?
+- ~~May need to restart with Electron Forge?~~
 
 ### Questions about Game Data
 

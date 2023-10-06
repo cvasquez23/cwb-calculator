@@ -2,6 +2,8 @@
 const path = require("path");
 const { app, BrowserWindow, Menu } = require("electron");
 
+process.env.NODE_ENV = "production";
+
 const isDev = process.env.NODE_ENV !== "production";
 const isMac = process.platform === "darwin";
 

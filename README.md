@@ -6,6 +6,10 @@ Fire Value Calculator for WDS Civil War Battles
 
 ### Installing
 
+- Run the CWB.Fire.Value.Calculator.Setup.0.5.0.exe
+- On 'Choose Installation Options' be sure to select 'Anyone who uses this computer (all users)' -- Program appeasr to require admin rights
+- Continue with the rest of the install wizard
+
 ### How to Use
 
 - Start watching code and start live dev app
@@ -22,6 +26,8 @@ Fire Value Calculator for WDS Civil War Battles
 - Add css stylings
 - Expand supported games
 - Expanded accessability and screen reader support
+- Change default install path
+- Require admin rights for installer?
 
 ### To Do
 

@@ -5,9 +5,11 @@ const { app, BrowserWindow, Menu } = require("electron");
 const isDev = process.env.NODE_ENV !== "production";
 const isMac = process.platform === "darwin";
 
-// Creat Main Window
-const createMainWindow = () => {
-  const mainWindow = new BrowserWindow({
+let mainWindow;
+
+// Create Main Window
+function createMainWindow() {
+  mainWindow = new BrowserWindow({
     title: "CWB Fire Value Calculator 0.5.0",
     width: isDev ? 1300 : 800,
     height: 600,
@@ -20,7 +22,7 @@ const createMainWindow = () => {
   }
 
   mainWindow.loadFile(path.join(__dirname, "./renderer/index.html"));
-};
+}
 
 // Create about window
 function createAboutWindow() {
@@ -40,6 +42,9 @@ app.whenReady().then(() => {
   // Implement Menu
   const mainMenu = Menu.buildFromTemplate(menu);
   Menu.setApplicationMenu(mainMenu);
+
+  // Remove mainWidow from memory on close
+  mainWindow.on("closed", () => (mainWindow = null));
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {

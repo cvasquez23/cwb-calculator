@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
     () =>
       funcs.forEach((func) => func());
 
-  // Utility function to add event listeners to a single element by ID
   const addEventListenerById = (id, event, callback) => {
     const element = document.getElementById(id);
     if (element) {
@@ -18,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Utility function for MutationObservers
   const observeElementById = (id, callback) => {
     const element = document.getElementById(id);
     if (element) {
@@ -26,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Add event listeners
+  // Inf event listeners
   addEventListenerBySelector("#target-size", "input", densityModifier);
   addEventListenerBySelector("#inf-fire-characteristics", "input", baseEfficiency);
   addEventListenerBySelector("#fire-mods", "change", standardFireValue);

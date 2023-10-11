@@ -4,9 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
-    <!-- ADD CSS LATER -->
+    <link rel="stylesheet" href="styles.css" />
     <script src="js/renderer.js" defer></script>
-    <!-- <script src="js/artCalc.js" defer></script> -->
     <title>CWB Fire Value Calculator</title>
   </head>
   <body>
@@ -57,8 +56,7 @@
         <input type="checkbox" id="stream" name="hexside" value="-.10" />
         <label for="stream"> Stream</label>
 
-        <p>HexSide Modifier Total: <output id="hexside-modifier"></output></p>
-        <code>hexsideModifier</code>
+        <p>Hexside Modifier Total: <output id="hexside-modifier"></output></p>
       </div>
       <!-- End Hexside Modifiers -->
 
@@ -94,7 +92,6 @@
         <label for="trench"> Trench</label>
 
         <p>Hex Modifier Total: <output id="hex-modifier"></output></p>
-        <code>hexModifier</code>
       </div>
       <!-- End Hex Modifiers -->
 
@@ -117,7 +114,6 @@
           <label for="elevation-two">Firing Unit Two Levels Lower</label>
 
           <p>Elevation Modifier: <output id="elevation-modifier"></output></p>
-          <code>elevationModifier</code>
         </div>
         <div id="other-mods">
           <h4>Other Modifiers</h4>
@@ -139,10 +135,8 @@
           <label for="enfiladed"> Enfiladed</label>
 
           <p>Other Modifiers: <output id="other-modifiers"></output></p>
-          <code>otherModifiers</code>
         </div>
         <p>Total Additional Modifiers: <output id="additional-modifier"></output></p>
-        <code>additionalModifiers</code>
       </div>
       <!-- End Additional Modifiers -->
 
@@ -153,13 +147,15 @@
         <input id="target-size" type="number" min="1" value="100" />
         <p><small>If Unknown -- Leave Unchanged</small></p>
         <p>Density Fire Value Multiplier: <output id="density-modifier"></output></p>
-        <code>densityMod</code>
       </div>
       <!-- End Density Modifier -->
       <!-- Start Target Hex Total Modifiers -->
-      <p>Target Unit Total Modifier: <output id="target-unit-total-modifier"></output></p>
-      <code>targetUnitTotalModifier</code> <br />
-      <code>targetUnitFireModifier = hexsideModifier + hexModifier + additionalModifier</code>
+      <div class="calculation">
+        Target Unit Total Modifier:
+        <span class="formula">targetUnitFireModifier = hexsideModifier + hexModifier + additionalModifier</span>
+        <output id="target-unit-total-modifier"></output>
+      </div>
+
       <!-- End Target Hex Total Modifiers -->
     </section>
     <!-- End Target Hex Information -->
@@ -170,19 +166,18 @@
       <h2>Infantry/Dismounted Cavalry Calculator</h2>
       <!-- Start Unit One Calculator -->
       <div id="unit-1-calculator">
-        <h3>Unit 1</h3>
         <!-- Start Firing Characteristics -->
         <div id="inf-fire-characteristics">
           <h3>Firing Characteristics</h3>
 
           <div>
-            <label for="firing-strength">No. of Men </label>
+            <label for="firing-strength">Firing Strength: </label>
             <input id="firing-strength" type="number" min="1" value="100" />
           </div>
 
           <div>
             <div>
-              <label for="range">Range</label>
+              <label for="range">Range: </label>
               <input id="range" type="number" min="1" max="11" value="1" />
             </div>
 
@@ -231,9 +226,11 @@
             </div>
             <!-- End Weapon Selection -->
             <p>Weapon Efficiency: <output id="weapon-efficiency"></output></p>
-            <p>Base Efficiency: <output id="base-efficiency"></output></p>
-            <code>baseEfficiency</code> <br />
-            <code>baseEfficiency = weapon-efficiency * firing-strength</code>
+            <div class="calculation">
+              Base Efficiency:
+              <span class="formula">Base Efficiency = Weapon Efficiency * Firing Strength</span>
+              <output id="base-efficiency"></output>
+            </div>
           </div>
         </div>
         <!-- End Firing Characteristics -->
@@ -282,7 +279,6 @@
             <label for="quality-ef">E/F Quality</label>
 
             <p>Quality Modifier: <output id="inf-quality-mod"></output></p>
-            <code>infQualityModifier</code>
           </div>
 
           <div id="inf-fatigue">
@@ -305,35 +301,45 @@
             <label for="fatigue-max">Fatigue Max</label>
 
             <p>Fatigue Modifier: <output id="inf-fatigue-mod"></output></p>
-            <code>infFatigueModifier</code>
           </div>
 
-          <p>Fire Unit Total Modifiers: <output id="inf-fire-mod"></output></p>
-          <code>infFireTotalModifier</code> <br />
-          <code>infFireTotalModifier = infQualityModifier + infFatigueModifier</code>
+          <div class="calculation">
+            Fire Unit Total Modifiers:
+            <span class="formula">infFireTotalModifier = infQualityModifier + infFatigueModifier</span>
+          </div>
+          <output id="inf-fire-mod"></output>
         </div>
+
         <!-- End Fatigue/Quality Modifiers -->
 
         <!-- Start Calculated Fire Values -->
         <div>
           <h3>Calculated Fire Values</h3>
 
-          <p>Standard Fire Value: <output id="standard-fire-value"></output></p>
-          <code>standardFireValue</code> <br />
-          <code>
-            standardFireValue = (((firingStrength * baseEfficiency) * densityMod) * (if (building .70) else 1) * (if (dismount .25) else 1) * (if (dismounted .50) else 1) * (if
-            (moved .50) else 1))
-          </code>
+          <div class="calculation">
+            Standard Fire Value:
+            <span class="formula">
+              standardFireValue = (((firingStrength * baseEfficiency) * densityMod) * (if (building .70) else 1) * (if (dismount .25) else 1) * (if (dismounted .50) else 1) * (if
+              (moved .50) else 1))
+            </span>
+            <output id="standard-fire-value"></output>
+          </div>
+          <br />
 
           <!-- Low Combat Result -->
-          <p>Low Combat Value: <output id="low-combat-value"></output></p>
-          <code>lowCombatValue</code> <br />
-          <code>lowCombatValue = (standardFireValue * infFireTotalModifier * targetUnitFireModifiers * 5) / 1000</code>
+          <div class="calculation">
+            Low Combat Value:
+            <span class="formula">lowCombatValue = (standardFireValue * infFireTotalModifier * targetUnitFireModifiers * 5) / 1000</span>
+            <output id="low-combat-value"></output>
+          </div>
+          <br />
 
           <!-- High Combat Result -->
-          <p>High Combat Value: <output id="high-combat-value"></output></p>
-          <code>highCombatValue</code> <br />
-          <code>highCombatValue = (standardFireValue * infFireTotalModifier * targetUnitFireModifiers * 25) / 1000</code>
+          <div class="calculation">
+            High Combat Value:
+            <span class="formula">highCombatValue = (standardFireValue * infFireTotalModifier * targetUnitFireModifiers * 25) / 1000</span>
+            <output id="high-combat-value"></output>
+          </div>
         </div>
         <!-- End Calculated Fire Values -->
       </div>
@@ -349,13 +355,13 @@
         <h3>Firing Characteristics</h3>
 
         <div>
-          <label for="art-firing-strength">No. of Guns </label>
+          <label for="art-firing-strength">Firing Strength: </label>
           <input id="art-firing-strength" type="number" min="1" value="1" />
         </div>
 
         <div>
           <div>
-            <label for="art-range">Range</label>
+            <label for="art-range">Range:</label>
             <input id="art-range" type="number" min="1" max="50" value="10" />
           </div>
 
@@ -495,9 +501,10 @@
           </div>
           <!-- End Weapon Selection -->
           <p>Artillery Weapon Efficiency: <output id="art-weapon-efficiency"></output></p>
-          <p>Artillery Base Efficiency: <output id="art-base-efficiency"></output></p>
-          <code>artBaseEfficiency</code> <br />
-          <code>artBaseEfficiency = art-weapon-efficiency * art-firing-strength * 50</code>
+          <div class="calculation">
+            Artillery Base Efficiency:
+            <output id="art-base-efficiency"></output> <span class="formula">artBaseEfficiency = art-weapon-efficiency * art-firing-strength * 50</span>
+          </div>
         </div>
 
         <!-- Start Fire Modifiers -->
@@ -512,7 +519,6 @@
           <label for="art-moved"> Fire After Movement</label>
 
           <p>Artillery Fire Modifiers: <output id="art-fire-modifier"></output></p>
-          <code>artFireModifiers</code>
         </div>
         <!-- End Fire Modifiers -->
 
@@ -535,7 +541,6 @@
             <label for="art-quality-ef">E/F Quality</label>
 
             <p>Quality Modifier: <output id="art-quality-mod"></output></p>
-            <code>artQualityModifier</code>
           </div>
 
           <div id="art-fatigue">
@@ -558,12 +563,13 @@
             <label for="art-fatigue-max">Fatigue Max</label>
 
             <p>Fatigue Modifier: <output id="art-fatigue-mod"></output></p>
-            <code>artFatigueModifier</code>
           </div>
 
-          <p>Artillery Fire Unit Total Modifiers: <output id="art-fire-mod"></output></p>
-          <code>artFireTotalModifier</code> <br />
-          <code>artFireTotalModifier = artQualityModifier + artFatigueModifier</code>
+          <div class="calculation">
+            Artillery Fire Unit Total Modifiers:
+            <span class="formula">artFireTotalModifier = artQualityModifier + artFatigueModifier</span>
+            <output id="art-fire-mod"></output>
+          </div>
         </div>
         <!-- End Fatigue/Quality Modifiers -->
 
@@ -571,19 +577,27 @@
         <div>
           <h3>Calculated Fire Values</h3>
 
-          <p>Standard Fire Value: <output id="art-standard-fire-value"></output></p>
-          <code>artStandardFireValue</code> <br />
-          <code>artStandardFireValue = ((artBaseEfficiency * densityMod) * (if (disrupted .50) else 1) * (if (moved .50) else 1)) </code>
+          <div class="calculation">
+            Standard Fire Value:
+            <span class="formula">artStandardFireValue = ((artBaseEfficiency * densityMod) * (if (disrupted .50) else 1) * (if (moved .50) else 1)) </span>
+            <output id="art-standard-fire-value"></output>
+          </div>
+          <br />
 
           <!-- Low Combat Result -->
-          <p>Low Combat Value: <output id="art-low-combat-value"></output></p>
-          <code>artLowCombatValue</code> <br />
-          <code>artLowCombatValue = (artStandardFireValue * artFireTotalModifier * targetUnitFireModifiers * 5) / 1000</code>
+          <div class="calculation">
+            Low Combat Value:
+            <span class="formula">artLowCombatValue = (artStandardFireValue * artFireTotalModifier * targetUnitFireModifiers * 5) / 1000</span>
+            <output id="art-low-combat-value"></output>
+          </div>
+          <br />
 
           <!-- High Combat Result -->
-          <p>High Combat Value: <output id="art-high-combat-value"></output></p>
-          <code>artHighCombatValue</code> <br />
-          <code>artHighCombatValue = (artStandardFireValue * artFireTotalModifier * targetUnitFireModifiers * 25) / 1000</code>
+          <div class="calculation">
+            High Combat Value:
+            <span class="formula">artHighCombatValue = (artStandardFireValue * artFireTotalModifier * targetUnitFireModifiers * 25) / 1000</span>
+            <output id="art-high-combat-value"></output>
+          </div>
         </div>
         <!-- End Artillery Calculated Fire Values -->
       </div>

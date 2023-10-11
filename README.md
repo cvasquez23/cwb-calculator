@@ -32,9 +32,9 @@ Fire Value Calculator for WDS Civil War Battles
 ### To Do
 
 - add 'inf' prefixes to infantry calculations
-- create game selection and fetch appropriate JSON DBs based on selection
+- ~~create game selection and fetch appropriate JSON DBs based on selection~~
 - 👏 clean 👏 up 👏 the 👏 code!
-- Fix James 6pdr listed as "james 6dr" in DB
+- ~~Fix James 6pdr listed as "james 6dr" in DB~~
 
 ### Known Bugs, Issues, and Limitations
 

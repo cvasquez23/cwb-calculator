@@ -6,13 +6,22 @@
     <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
     <!-- ADD CSS LATER -->
     <script src="js/renderer.js" defer></script>
-    <script src="js/artCalc.js" defer></script>
+    <!-- <script src="js/artCalc.js" defer></script> -->
     <title>CWB Fire Value Calculator</title>
   </head>
   <body>
     <h1>Civil War Battles Fire Value Calculator</h1>
     <code>Version 0.5.0 Calculation Test Release</code>
     <!-- Selet Game Section -->
+    <div>
+      <label for="gameSelection">Game:</label>
+      <select id="gameSelection" name="game">
+        <option value="ant">Campaign Antietam</option>
+        <option value="cor">Campaign Cornith</option>
+        <option value="shi">Campaign Shiloh</option>
+        <!-- Add more game options as needed -->
+      </select>
+    </div>
 
     <!-- Start Target Hex Information -->
     <section id="target-hex-info">
@@ -389,8 +398,8 @@
               <label for="ho 12pdr mountain">Howitzer 12pdr Mountain</label><br />
 
               <p><strong>James </strong></p>
-              <input type="radio" id="james 6dr" name="art-weapon" value="james 6dr" />
-              <label for="james 6dr">James 6pdr</label>
+              <input type="radio" id="james 6pdr" name="art-weapon" value="james 6pdr" />
+              <label for="james 6pdr">James 6pdr</label>
 
               <input type="radio" id="james 12pdr" name="art-weapon" value="james 12pdr" />
               <label for="james 12pdr">James 12pdr</label>

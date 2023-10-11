@@ -1,4 +1,98 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // OLD EVENT LISTENER CODE
+  // Utility function to add event listeners to elements by selector
+  const addEventListenerBySelector = (selector, event, callback) => {
+    document.querySelectorAll(selector).forEach((element) => {
+      element.addEventListener(event, callback);
+    });
+  };
+
+  // Utility function for calling multiple functions
+  const callMultipleFunctions =
+    (...funcs) =>
+    () =>
+      funcs.forEach((func) => func());
+
+  // Add event listeners
+  addEventListenerBySelector("#target-size", "input", densityModifier);
+  addEventListenerBySelector("#inf-fire-characteristics", "input", baseEfficiency);
+  addEventListenerBySelector("#fire-mods", "change", standardFireValue);
+  addEventListenerBySelector('input[name="quality"], input[name="fatigue"]', "change", infFireTotalModifier);
+
+  addEventListenerBySelector(
+    'input[name="hexside"], input[name="hex"], input[name="elevation"], input[name="other"]',
+    "change",
+    callMultipleFunctions(hexsideModifier, hexModifier, elevationModifier, otherModifiers, additionalModifiers, targetUnitTotalModifier, lowCombatValue, highCombatValue)
+  );
+
+  addEventListenerBySelector("[name='fire-mods']", "change", callMultipleFunctions(fireModifiers, lowCombatValue, highCombatValue));
+
+  // Add event listener for firing strength input
+  document.getElementById("art-firing-strength").addEventListener("input", artBaseEfficiency);
+  // Add event listener for range dropdown
+  document.getElementById("art-range").addEventListener("change", artBaseEfficiency);
+  // Add event listener for weapon radio buttons
+  const weapons = document.querySelectorAll('input[name="art-weapon"]');
+  weapons.forEach((weapon) => {
+    weapon.addEventListener("change", artBaseEfficiency);
+  });
+  // Event listeners for artillery quality radio buttons
+  const qualityRadioButtons = document.querySelectorAll('input[name="art-quality"]');
+  qualityRadioButtons.forEach((radioButton) => {
+    radioButton.addEventListener("change", function () {
+      artQualityModifier(); // You can optionally call this here since artFireTotalModifier() also calls it.
+      artFireTotalModifier();
+    });
+  });
+
+  // Event listeners for artillery fatigue radio buttons
+  const fatigueRadioButtons = document.querySelectorAll('input[name="art-fatigue"]');
+  fatigueRadioButtons.forEach((radioButton) => {
+    radioButton.addEventListener("change", function () {
+      artFatigueModifier(); // You can optionally call this here since artFireTotalModifier() also calls it.
+      artFireTotalModifier();
+    });
+  });
+
+  // Add event listener for 'disrupted' checkbox
+  document.getElementById("art-disrupted").addEventListener("change", artFireModifiers);
+
+  // Add event listener for 'moved-fire' checkbox
+  document.getElementById("art-moved-fire").addEventListener("change", artFireModifiers);
+  const baseEfficiencyElement = document.getElementById("art-base-efficiency");
+  new MutationObserver(artStandardFireValue).observe(baseEfficiencyElement, { characterData: true, childList: true, subtree: true });
+
+  // Event listener for changes in density-modifier content
+  const densityModifierElement = document.getElementById("density-modifier");
+  new MutationObserver(artStandardFireValue).observe(densityModifierElement, { characterData: true, childList: true, subtree: true });
+
+  // Event listener for the art-disrupted checkbox
+  document.getElementById("art-disrupted").addEventListener("change", artStandardFireValue);
+
+  // Event listener for the art-moved-fire checkbox
+  document.getElementById("art-moved-fire").addEventListener("change", artStandardFireValue);
+  // Event listener for changes in art-standard-fire-value content
+  const standardFireValueElement = document.getElementById("art-standard-fire-value");
+  new MutationObserver(function () {
+    artLowCombatValue();
+    artHighCombatValue();
+  }).observe(standardFireValueElement, { characterData: true, childList: true, subtree: true });
+
+  // Event listener for changes in art-fire-mod content
+  const fireModElement = document.getElementById("art-fire-mod");
+  new MutationObserver(function () {
+    artLowCombatValue();
+    artHighCombatValue();
+  }).observe(fireModElement, { characterData: true, childList: true, subtree: true });
+
+  // Event listener for changes in target-unit-total-modifier content
+  const targetUnitModifierElement = document.getElementById("target-unit-total-modifier");
+  new MutationObserver(function () {
+    artLowCombatValue();
+    artHighCombatValue();
+  }).observe(targetUnitModifierElement, { characterData: true, childList: true, subtree: true });
+  // END OLD EVENT LISTENER CODE
+
   // Add event listener for firing strength input
   document.getElementById("art-firing-strength").addEventListener("input", artBaseEfficiency);
   // Add event listener for range dropdown

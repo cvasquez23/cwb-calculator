@@ -29,32 +29,53 @@
       <div id="hexside-mod">
         <h3>Hexside Modifiers</h3>
         <!-- Breastworks -30% -->
-        <input type="checkbox" id="breastwork" name="hexside" value="-.30" />
-        <label for="breastwork"> Breastwork</label>
+        <span class="calculation">
+          <input type="checkbox" id="breastwork" name="hexside" value="-.30" />
+          <label for="breastwork"> Breastwork</label>
+          <span class="formula">-30% Modifier</span>
+        </span>
 
         <!-- Creek -20% -->
-        <input type="checkbox" id="creek" name="hexside" value="-.20" />
-        <label for="creek"> Creek</label>
+        <span class="calculation">
+          <input type="checkbox" id="creek" name="hexside" value="-.20" />
+          <label for="creek"> Creek</label>
+          <span class="formula">-20% Modifier</span>
+        </span>
 
         <!-- Cut 50% -->
-        <input type="checkbox" id="cut" name="hexside" value=".50" />
-        <label for="cut"> Cut</label>
+        <span class="calculation">
+          <input type="checkbox" id="cut" name="hexside" value=".50" />
+          <label for="cut"> Cut</label>
+          <span class="formula">50% Modifier</span>
+        </span>
 
         <!-- Embank -70% -->
-        <input type="checkbox" id="embank" name="hexside" value="-.70" />
-        <label for="embank"> Embank</label>
+        <span class="calculation">
+          <input type="checkbox" id="embank" name="hexside" value="-.70" />
+          <label for="embank"> Embank</label>
+          <span class="formula">-70% Modifier</span>
+        </span>
 
         <!-- Fence -20% -->
-        <input type="checkbox" id="fence" name="hexside" value="-.20" />
-        <label for="fence"> Fence</label>
+        <span class="calculation">
+          <input type="checkbox" id="fence" name="hexside" value="-.20" />
+          <label for="fence"> Fence</label>
+          <span class="formula">-20% Modifier</span>
+        </span>
 
         <!-- Stone -40% -->
-        <input type="checkbox" id="stone" name="hexside" value="-.40" />
-        <label for="stone"> Stone</label>
+        <span class="calculation">
+          <input type="checkbox" id="stone" name="hexside" value="-.40" />
+          <label for="stone"> Stone</label>
+          <span class="formula">-40% Modifier</span>
+        </span>
 
         <!-- Stream -10% -->
-        <input type="checkbox" id="stream" name="hexside" value="-.10" />
-        <label for="stream"> Stream</label>
+        <span class="calculation">
+          <input type="checkbox" id="stream" name="hexside" value="-.10" />
+          <label for="stream"> Stream</label>
+          <span class="formula">-10% Modifier</span>
+        </span>
 
         <p>Hexside Modifier Total: <output id="hexside-modifier"></output></p>
       </div>
@@ -64,32 +85,53 @@
       <div id="hex-mod">
         <h3>Hex Modifiers</h3>
         <!-- Abatis 20% -->
-        <input type="checkbox" id="abatis" name="hex" value=".20" />
-        <label for="abatis"> Abatis</label>
+        <span class="calculation">
+          <input type="checkbox" id="abatis" name="hex" value=".20" />
+          <label for="abatis"> Abatis</label>
+          <span class="formula">20% Modifier</span>
+        </span>
 
         <!-- Field -10% -->
-        <input type="checkbox" id="field" name="hex" value="-.10" />
-        <label for="field"> Field</label>
+        <span class="calculation">
+          <input type="checkbox" id="field" name="hex" value="-.10" />
+          <label for="field"> Field</label>
+          <span class="formula">-10% Modifier</span>
+        </span>
 
         <!-- Forest -40% -->
-        <input type="checkbox" id="forest" name="hex" value="-.40" />
-        <label for="forest"> Forest</label>
+        <span class="calculation">
+          <input type="checkbox" id="forest" name="hex" value="-.40" />
+          <label for="forest"> Forest</label>
+          <span class="formula">-40% Modifier</span>
+        </span>
 
         <!-- Orchard -10% -->
-        <input type="checkbox" id="orchard" name="hex" value="-.10" />
-        <label for="orchard"> Orchard</label>
+        <span class="calculation">
+          <input type="checkbox" id="orchard" name="hex" value="-.10" />
+          <label for="orchard"> Orchard</label>
+          <span class="formula">-10% Modifier</span>
+        </span>
 
         <!-- Rough -30% -->
-        <input type="checkbox" id="rough" name="hex" value="-.30" />
-        <label for="rough"> Rough</label>
+        <span class="calculation">
+          <input type="checkbox" id="rough" name="hex" value="-.30" />
+          <label for="rough"> Rough</label>
+          <span class="formula">-30% Modifier</span>
+        </span>
 
         <!-- Town -30% -->
-        <input type="checkbox" id="town" name="hex" value="-.30" />
-        <label for="town"> Town</label>
+        <span class="calculation">
+          <input type="checkbox" id="town" name="hex" value="-.30" />
+          <label for="town"> Town</label>
+          <span class="formula">-30% Modifier</span>
+        </span>
 
         <!-- Trench -60% -->
-        <input type="checkbox" id="trench" name="hex" value="-.60" />
-        <label for="trench"> Trench</label>
+        <span class="calculation">
+          <input type="checkbox" id="trench" name="hex" value="-.60" />
+          <label for="trench"> Trench</label>
+          <span class="formula">-60% Modifier</span>
+        </span>
 
         <p>Hex Modifier Total: <output id="hex-modifier"></output></p>
       </div>
@@ -102,16 +144,25 @@
         <div id="elevationMod">
           <h4>Elevation Modifier</h4>
           <!-- Even Elevation 0% -->
-          <input type="radio" id="elevation-equal" name="elevation" value="0" checked />
-          <label for="elevation-equal">Equal Elevation</label>
+          <span class="calculation">
+            <input type="radio" id="elevation-equal" name="elevation" value="0" checked />
+            <label for="elevation-equal">Equal Elevation</label>
+            <span class="formula">0% Modifier</span>
+          </span>
 
           <!-- Elevation1 -20% -->
-          <input type="radio" id="elevation-one" name="elevation" value="-.20" />
-          <label for="elevation-one">Firing Unit One Level Lower</label>
+          <span class="calculation">
+            <input type="radio" id="elevation-one" name="elevation" value="-.20" />
+            <label for="elevation-one">Firing Unit One Level Lower</label>
+            <span class="formula">-20% Modifier</span>
+          </span>
 
           <!-- Elevation2 -40% -->
-          <input type="radio" id="elevation-two" name="elevation" value="-.40" />
-          <label for="elevation-two">Firing Unit Two Levels Lower</label>
+          <span class="calculation">
+            <input type="radio" id="elevation-two" name="elevation" value="-.40" />
+            <label for="elevation-two">Firing Unit Two Levels Lower</label>
+            <span class="formula">-40% Modifier</span>
+          </span>
 
           <p>Elevation Modifier: <output id="elevation-modifier"></output></p>
         </div>
@@ -119,20 +170,32 @@
           <h4>Other Modifiers</h4>
 
           <!-- In Column 40% -->
-          <input type="checkbox" id="infantry-column" name="other" value=".40" />
-          <label for="infantry-column"> Infantry in Column</label>
+          <span class="calculation">
+            <input type="checkbox" id="infantry-column" name="other" value=".40" />
+            <label for="infantry-column"> Infantry in Column</label>
+            <span class="formula">40% Modifier</span>
+          </span>
 
           <!-- Limbered 40% -->
-          <input type="checkbox" id="limbered-art" name="other" value=".40" />
-          <label for="limberedArt"> Artillery Limbered</label>
+          <span class="calculation">
+            <input type="checkbox" id="limbered-art" name="other" value=".40" />
+            <label for="limbered-art"> Artillery Limbered</label>
+            <span class="formula">40% Modifier</span>
+          </span>
 
           <!-- Mounted 40% -->
-          <input type="checkbox" id="mounted" name="other" value=".40" />
-          <label for="mounted"> Mounted Cavalry</label>
+          <span class="calculation">
+            <input type="checkbox" id="mounted" name="other" value=".40" />
+            <label for="mounted"> Mounted Cavalry</label>
+            <span class="formula">40% Modifier</span>
+          </span>
 
           <!-- Enfiladed 40% -->
-          <input type="checkbox" id="enfiladed" name="other" value=".40" />
-          <label for="enfiladed"> Enfiladed</label>
+          <span class="calculation">
+            <input type="checkbox" id="enfiladed" name="other" value=".40" />
+            <label for="enfiladed"> Enfiladed</label>
+            <span class="formula">40% Modifier</span>
+          </span>
 
           <p>Other Modifiers: <output id="other-modifiers"></output></p>
         </div>
@@ -238,25 +301,35 @@
         <!-- Start Fire Modifiers -->
         <div id="fire-mods">
           <h3>Fire Modifiers</h3>
-
           <!-- Building -50% -->
-          <input type="checkbox" id="building" name="fire-mods" value=".50" />
-          <label for="building"> Building Breastwork / Trenches</label>
+          <span class="calculation">
+            <input type="checkbox" id="building" name="fire-mods" value=".50" />
+            <label for="building"> Building Breastwork / Trenches</label>
+            <span class="formula">-50% Modifier</span>
+          </span>
 
           <!-- Dismounted -75% -->
-          <input type="checkbox" id="dismounted" name="fire-mods" value=".75" />
-          <label for="dismounted"> Dismounted</label>
+          <span class="calculation">
+            <input type="checkbox" id="dismounted" name="fire-mods" value=".75" />
+            <label for="dismounted"> Dismounted</label>
+            <span class="formula">-25% Modifier</span>
+          </span>
 
           <!-- Disrupted -50% -->
-          <input type="checkbox" id="disrupted" name="fire-mods" value=".50" />
-          <label for="disrupted"> Disrupted</label>
+          <span class="calculation">
+            <input type="checkbox" id="disrupted" name="fire-mods" value=".50" />
+            <label for="disrupted"> Disrupted</label>
+            <span class="formula">-50% Modifier</span>
+          </span>
 
           <!-- Moved -50% -->
-          <input type="checkbox" id="moved-fire" name="fire-mods" value=".50" />
-          <label for="moved"> Fire After Movement</label>
+          <span class="calculation">
+            <input type="checkbox" id="moved-fire" name="fire-mods" value=".50" />
+            <label for="moved"> Fire After Movement</label>
+            <span class="formula">-50% Modifier</span>
+          </span>
 
           <p>Fire Modifiers: <output id="fire-modifier"></output></p>
-          <code>fireModifiers</code>
         </div>
         <!-- End Fire Modifiers -->
 
@@ -267,16 +340,25 @@
 
           <!-- AB Quality 10% -->
           <div id="inf-quality">
-            <input type="radio" id="quality-ab" name="quality" value=".10" />
-            <label for="quality-ab">A/B Quality</label>
+            <span class="calculation">
+              <input type="radio" id="quality-ab" name="quality" value=".10" />
+              <label for="quality-ab">A/B Quality</label>
+              <span class="formula">+10% Modifier</span>
+            </span>
 
             <!-- C/D Quality 0% -->
-            <input type="radio" id="quality-cd" name="quality" value="0" checked />
-            <label for="quality-cd">C/D Quality</label>
+            <span class="calculation">
+              <input type="radio" id="quality-cd" name="quality" value="0" checked />
+              <label for="quality-cd">C/D Quality</label>
+              <span class="formula">0% Modifier</span>
+            </span>
 
             <!-- E/F Quality -10% -->
-            <input type="radio" id="quality-ef" name="quality" value="-.10" />
-            <label for="quality-ef">E/F Quality</label>
+            <span class="calculation">
+              <input type="radio" id="quality-ef" name="quality" value="-.10" />
+              <label for="quality-ef">E/F Quality</label>
+              <span class="formula">-10% Modifier</span>
+            </span>
 
             <p>Quality Modifier: <output id="inf-quality-mod"></output></p>
           </div>

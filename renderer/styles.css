@@ -1,39 +1,49 @@
 html,
 body,
-div,
 h1,
 h2,
 h3,
 h4,
-h5,
-h6,
 p,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
+div,
+section,
 label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td {
+input,
+select,
+option,
+form,
+code,
+small,
+span,
+output {
   margin: 0;
   padding: 0;
   border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+body {
+  line-height: 1;
 }
 
 ol,
 ul {
   list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: "";
+  content: none;
 }
 
 table {
@@ -42,14 +52,11 @@ table {
 }
 
 body {
-  font-size: 100%;
-  line-height: 1.4;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  background-color: #f4f4f4;
+  font-family: "Helvetica, Arial, sans-serif";
+  font-size: 16px;
+  color: #e0e0e0;
+  background-color: #001f3f;
+  line-height: 1.6;
 }
 
 h1,
@@ -58,67 +65,96 @@ h3,
 h4,
 h5,
 h6 {
-  margin-bottom: 20px;
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  color: #daa520;
 }
 
-label,
-input,
-select,
-p,
+h1 {
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 1.875rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: 0.875rem;
+}
+
+a {
+  color: #8b0000;
+  text-decoration: none;
+}
+a:hover, a:focus {
+  color: #3a66a7;
+  text-decoration: underline;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+strong,
+b {
+  font-weight: bold;
+}
+
+em,
+i {
+  font-style: italic;
+}
+
 code {
-  margin-bottom: 10px;
+  font-family: "Courier New", Courier, monospace;
+  background-color: #3e4c59;
+  color: #c0c0c0;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
 }
 
-input[type="checkbox"],
-input[type="radio"] {
-  margin-right: 5px;
+blockquote {
+  margin-left: 1.5em;
+  color: #daa520;
+  font-style: italic;
 }
 
-hr {
-  margin: 20px 0;
-  border-color: #ddd;
-}
-
-section {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
-
-/* Calculation-Formula Popup */
 .calculation {
   position: relative;
   display: inline-block;
-  /* padding: 10px 15px; */
-  /* background-color: #f9f9f9; */
-  /* border: 1px solid #ccc; */
   border-radius: 4px;
   transition: background-color 0.3s;
 }
-.calculation:hover {
-  /* background-color: #e6e6e6; */
+.calculation:hover .formula {
+  visibility: visible;
+  opacity: 1;
 }
-
 .calculation .formula {
   visibility: hidden;
-  /* width: 120px; */
   background-color: #555;
   color: #fff;
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 5px 10px;
   position: absolute;
   z-index: 1;
-  bottom: 125%; /* Position the tooltip above the text */
+  bottom: 125%;
   left: 50%;
-  margin-left: -60px; /* Use half of the width to center the tooltip */
+  transform: translateX(-50%);
   opacity: 0;
   transition: opacity 0.3s;
-}
-
-.calculation:hover .formula {
-  visibility: visible;
-  opacity: 1;
+  white-space: nowrap;
 }

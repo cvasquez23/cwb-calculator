@@ -1,0 +1,44 @@
+// Union Dark Theme
+$dark-primary-bg: #001f3f;
+$dark-secondary-bg: #3e4c59;
+$dark-accent-1: #daa520;
+$dark-accent-2: #8b0000;
+$dark-text-color: #e0e0e0;
+$dark-highlight: #3a66a7;
+$dark-iconography: #c0c0c0;
+
+// Confederate Light Theme
+$light-primary-bg: #faf3e0;
+$light-secondary-bg: #d3d3d3;
+$light-accent-1: #808080;
+$light-accent-2: #d2691e;
+$light-text-color: #2f4f4f;
+$light-highlight: #d57c6b;
+$light-iconography: #cd7f32;
+
+// Typography
+$font-primary: "Helvetica, Arial, sans-serif";
+$font-secondary: "Georgia, serif";
+$base-font-size: 16px;
+$font-size-h1: 2rem;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+// Spacing & Layout
+$spacing-small: 8px;
+$spacing-medium: 16px;
+$spacing-large: 24px;
+$container-max-width: 1200px;
+
+// Breakpoints
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+
+// Borders & Shadows
+$border-radius: 4px;
+$border-width: 1px;
+$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+// Animation
+$transition-fast: 0.2s;
+$transition-timing-default: ease-in-out;
